@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-const Auth = () => {
+const SignUpLogin = () => {
     <div>
         Log In/Sign Up
     </div>
