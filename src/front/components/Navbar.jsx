@@ -8,7 +8,7 @@ export const Navbar = () => {
 			<div className="container">
 				<li>
 					<Link to="/">
-					<span className="navbar-brand mb-0 h1">Love Island Home</span>
+					<span className="navbar-brand mb-0 h1">Love Island - Home</span>
 					</Link>
 				</li>
 				<li>
@@ -16,7 +16,23 @@ export const Navbar = () => {
 					<button className="btn btn-primary">VOTE</button>
 					</Link>
 				</li>
-
+				<li>
+					<Link to="/leaderboard">
+					</Link>
+				</li>
+				<li>
+					<Link to="/islanders">
+					</Link>
+				</li>
+				<li>
+					<Link to="/profile">
+					</Link>
+				</li>
+				<li>
+					<Link to="/signuplogin">
+					Sign Up/Log In
+					</Link>
+				</li>
 			</div>
 			</ul>
 		</nav>
