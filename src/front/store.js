@@ -1,6 +1,6 @@
 export const initialStore = () => {
   return {
-    baseUrl: ask Alex,
+    baseUrl: import.meta.env.VITE_BACKEND_URL,
     islanders: [],      
     favorites: [],       
   };
@@ -33,4 +33,4 @@ export default function storeReducer(store, action = {}) {
     default:
       throw Error("❌ Unknown action type: " + action.type);
   }
-}}
+}
