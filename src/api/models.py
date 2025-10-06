@@ -20,6 +20,7 @@ db = SQLAlchemy()
 
 
 class User(db.Model):
+    __tablename__ = "user"
     id = Column(Integer, primary_key = True) 
     email = Column(String(70), unique = True, nullable = False)
     username = Column(String(70), unique = True, nullable = False)
