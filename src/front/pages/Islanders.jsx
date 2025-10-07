@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-const Islanders = () => {
+export const Islanders = () => {
     return(
         <div>
             All Islanders Page
@@ -8,4 +8,3 @@ const Islanders = () => {
     )
 }
 
-export default Islanders;
