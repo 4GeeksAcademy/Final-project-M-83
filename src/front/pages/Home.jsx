@@ -5,7 +5,11 @@ import { Leaderboard } from "./Leaderboard.jsx";
 
 export const Home = () => {
 	const { store, dispatch } = useGlobalReducer()
-	
+	useEffect(()=>{
+		fetch("/data.json")
+		.then((resp)=> resp.json())
+		.then((data)=> console.log("data!!!!", data))
+	},[]) 
 	return (
 		<div>
 			<Leaderboard />
