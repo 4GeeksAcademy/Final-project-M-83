@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-const UserProfile = () => {
+export const UserProfile = () => {
     return(
         <div>
             User Profile
@@ -8,4 +8,3 @@ const UserProfile = () => {
     )
 }
 
-export default UserProfile;
