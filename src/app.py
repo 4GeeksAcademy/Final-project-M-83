@@ -57,6 +57,8 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 # any other endpoint will try to serve it like a static file
+
+
 @app.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
     if not os.path.isfile(os.path.join(static_file_dir, path)):
@@ -65,17 +67,19 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0  # avoid cache memory
     return response
 
+
 @app.route('/islanders', methods=['GET'])
 def retreive_islanders():
-     islanders = Islander.query.all()
-     islanders_list = [item.serialize() for item in islanders]
-     response_body = {
-         "msg": "Here are all the islanders",
-         "islanders": islanders_list
-     }
-     return jsonify(response_body), 200
+    islanders = Islander.query.all()
+    islanders_list = [item.serialize() for item in islanders]
+    response_body = {
+        "msg": "Here are all the islanders",
+        "islanders": islanders_list
+    }
+    return jsonify(response_body), 200
 
-@app.route('/islanders/<int: islander_id>', methods=['GET'])
+
+@app.route('/islanders/<int:islander_id>', methods=['GET'])
 def islander_info(islander_id):
     islander = db.session.get(Islander, islander_id)
     response_body = {
@@ -84,7 +88,11 @@ def islander_info(islander_id):
     }
     return jsonify(response_body), 200
 
-@app.route('/')
+
+@app.route('/users/favorites/islander', methods=['POST'])
+def favorite_islander():
+    info = request.get_json()
+
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
