@@ -8,8 +8,8 @@ import {
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { Islanders } from "./pages/Islanders";
-// import { VotingPage } from "./pages/VotingPage";
-// import { UserProfile } from "./pages/UserProfile";
+import { VotingPage } from "./pages/VotingPage";
+import { UserProfile } from "./pages/UserProfile";
 // import { SignupLogin } from "./pages/SignupLogin";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
@@ -31,9 +31,10 @@ export const router = createBrowserRouter(
         <Route path= "/" element={<Home />} />
         <Route path= "/islanders" element={<Islanders />} />
         <Route path= "/leaderboard" element={<Leaderboard />} />
-        {/* <Route path= "/voting" element={<VotingPage />} /> */}
+        <Route path= "/voting" element={<VotingPage />} /> 
+        <Route path= "/profile" element={<UserProfile />} />
+
         {/* <Route path= "/leaderboard" element={<Leaderboard />} /> */}
-        {/* <Route path= "/profile" element={<UserProfile />} /> */}
         {/* <Route path= "/signuplogin" element={<SignUpLogin />} /> */}
         {/* <Route path="/single/:theId" element={ <Single />} />  Dynamic route for single items */}
         {/* <Route path="/demo" element={<Demo />} /> */}

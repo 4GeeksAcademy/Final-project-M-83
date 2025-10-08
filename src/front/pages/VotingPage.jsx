@@ -1,11 +1,9 @@
 import React, { useEffect } from "react"
 
-const VotingPage = () => {
+export const VotingPage = () => {
     return (
         <div>
             Voting
         </div>
     )
 }
-
-export default VotingPage;
