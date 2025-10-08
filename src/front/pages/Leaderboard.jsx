@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 export const Leaderboard = () => {
-    return(
+    return (
         <div>
             All Leaderboard Page
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-export const UserProfile = () => {
+export const Profile = () => {
     return(
         <div>
             User Profile
