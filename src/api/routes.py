@@ -21,7 +21,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@app.route('/islanders', methods=['GET'])
+@api.route('/islanders', methods=['GET'])
 def retreive_islanders():
     islanders = Islander.query.all()
     islanders_list = [item.serialize() for item in islanders]
@@ -32,7 +32,7 @@ def retreive_islanders():
     return jsonify(response_body), 200
 
 
-@app.route('/islanders/<int:islander_id>', methods=['GET'])
+@api.route('/islanders/<int:islander_id>', methods=['GET'])
 def islander_info(islander_id):
     islander = db.session.get(Islander, islander_id)
     response_body = {
