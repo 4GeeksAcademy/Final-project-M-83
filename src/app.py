@@ -67,28 +67,6 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0  # avoid cache memory
     return response
 
-
-@app.route('/islanders', methods=['GET'])
-def retreive_islanders():
-    islanders = Islander.query.all()
-    islanders_list = [item.serialize() for item in islanders]
-    response_body = {
-        "msg": "Here are all the islanders",
-        "islanders": islanders_list
-    }
-    return jsonify(response_body), 200
-
-
-@app.route('/islanders/<int:islander_id>', methods=['GET'])
-def islander_info(islander_id):
-    islander = db.session.get(Islander, islander_id)
-    response_body = {
-        "msg": "Here is this islander's information",
-        "islander": islander.serialize()
-    }
-    return jsonify(response_body), 200
-
-
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
