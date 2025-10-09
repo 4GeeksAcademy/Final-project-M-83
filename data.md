@@ -23,22 +23,15 @@ From the larger set of data, the following objects will be filtered for each con
   * Age
   * Hometown
   * Occupation
+   * ***Gender*** - original doesn't explicitly give us gender, but we can pull male and female contestants from the bachelor/bachelorette arrays directly since they are already separated by gender.
 
 ## Adding Custom Fields
 The original data does not have everything needed so we will need to add the following data for each contestant:
 
   * Image of contestant
   * Number of votes, to be used for leaderboard/voting pages
-  * ***Gender***
  
- **For example,**
- 
->for c in all_contestants:
-    c["gender"] = "female"  (or "male", depending on dataset)
-    >
-    >c["is_bombshell"] = False
-
- *  ***"Bombshell"*** - this will be a boolean value to distinguish between main and bombshell islanders: 
-    - "is_bombshell" = True indicates the islander is a bombshell.
+  *  ***"Bombshell"*** - this will be a boolean value to distinguish between main and bombshell islanders: 
+   
 
 After the custom fields are added, we can save the customized version as a new JSON file (such as islanders.json) so our backend can easily serve data that already fits our app’s structure.
