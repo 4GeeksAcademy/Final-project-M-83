@@ -39,8 +39,8 @@ class Islander (db.Model):
     age = Column(Integer, nullable=True)
     occupation = Column(String(100), nullable=True)
     hometown = Column(String(100), nullable=True)
-    bombshell = Column((Boolean), default=False)
-
+    bombshell = Column(Boolean, default=False)  
+    
     def serialize(self):
         return {
             "id": self.id,
