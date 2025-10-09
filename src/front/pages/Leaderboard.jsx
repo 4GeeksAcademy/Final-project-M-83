@@ -1,11 +1,10 @@
 import React, { useEffect } from "react"
 
-const Leaderboard = () => {
+export const Leaderboard = () => {
     return (
         <div>
-            Leaderboard
+            All Leaderboard Page
         </div>
-    );
-};
+    )
+}
 
-export default Leaderboard;

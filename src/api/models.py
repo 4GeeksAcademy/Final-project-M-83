@@ -3,26 +3,26 @@ from sqlalchemy import String, Boolean, Column, Integer, Table, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 db = SQLAlchemy()
-favorite_islanders = Table (
+favorite_islanders = Table(
     "favorite_islanders",
     db.Model.metadata,
-    Column ("user_id", Integer, ForeignKey("user.id"), primary_key = True),
-    Column ("islander_id", Integer, ForeignKey("islander.id"), primary_key = True)
+    Column("user_id", Integer, ForeignKey("user.id"), primary_key=True),
+    Column("islander_id", Integer, ForeignKey("islander.id"), primary_key=True)
 )
 
 
 class User(db.Model):
     __tablename__ = "user"
-    id = Column(Integer, primary_key = True) 
-    email = Column(String(70), unique = True, nullable = False)
-    favorite_islanders = relationship("Islander", secondary = favorite_islanders)
-    username = Column(String(70), unique = True, nullable = False)
-    phonenumber = Column(Integer, unique = True, nullable = True)
-    profile_image = Column(String(260), nullable = True)
-    password = Column(String(70), unique = False, nullable = False)
-    
+    id = Column(Integer, primary_key=True)
+    email = Column(String(70), unique=True, nullable=False)
+    username = Column(String(70), unique=True, nullable=False)
+    phonenumber = Column(Integer, unique=True, nullable=True)
+    profile_image = Column(String(260), nullable=True)
+    favorite_islanders = relationship("Islander", secondary=favorite_islanders)
+    password = Column(String(70), unique=False, nullable=False)
+
     def serialize(self):
-        return{
+        return {
             "id": self.id,
             "username": self.username,
             "phonenumber": self.phonenumber,
@@ -46,7 +46,7 @@ class Islander (db.Model):
             "id": self.id,
             "name": self.name,
             "age": self.age,
-            "occupation" : self.occupation,
+            "occupation": self.occupation,
             "hometown": self.hometown,
-            "status": self.bombshell
+            "bombshell": self.bombshell
         }

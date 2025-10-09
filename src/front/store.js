@@ -1,8 +1,10 @@
 export const initialStore = () => {
   return {
     baseUrl: import.meta.env.VITE_BACKEND_URL,
-    islanders: [],      
-    favorites: [],       
+    islanders: [],
+    users: null,      
+    favorites: [], 
+          
   };
 };
 
@@ -14,7 +16,12 @@ export default function storeReducer(store, action = {}) {
         ...store,
         islanders: action.payload,
       };
-
+    
+     case "set-users":
+      return {
+        ...store,
+        users: action.payload,
+      };
 
     case "add-favorite":
       return {
