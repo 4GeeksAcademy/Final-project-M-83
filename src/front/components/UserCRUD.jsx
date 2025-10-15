@@ -29,6 +29,7 @@ export const loginUser = (store, dispatch, credentials) => {
 };
 
 
+
 export const getAllUsers = (store, dispatch) => {
     fetch(store.baseUrl + "user")
         .then(resp => resp.json())
@@ -41,6 +42,7 @@ export const getAllUsers = (store, dispatch) => {
         })
         .catch(err => console.error("Error fetching users:", err));
 };
+console.log("All users:", getAllUsers());
 
 export const signUp = (store , dispatch , userData) => {
     fetch(store.baseUrl + "user",{
