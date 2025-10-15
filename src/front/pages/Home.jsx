@@ -9,28 +9,33 @@ import { Leaderboard } from "./Leaderboard.jsx";
 export const Home = () => {
 	const { store, dispatch } = useGlobalReducer()
 	const getIslanderGirls = (girls) =>{
-			const allseasonsgirls = girls.bachelor //pulling all girls from the bachelor seasons
-			const season23datagirls = allseasonsgirls["23"] //pulling all girls from S23
+			const allseasonsgirls = girls.bachelor //filtering all girls from the bachelor seasons
+			// console.log("all girls from all seasons!!!", allseasonsgirls)
+			const season23datagirls = allseasonsgirls["23"] //filtering all contestant data from S23
+			// console.log("all data from season 23!!!", season23datagirls)
 			const fcontestantslist = season23datagirls.contestants //actual list of female contestants in S23
 			fcontestantslist.length = 15; //declares length of female islanders we are choosing, 15 
 			for (let i = 0;i <=4 ;i++){
-				// console.log("data!!!!", i) //we want the for loop to randomly select 5 female bombshells
-				const selectcontestant = fcontestantslist[i] //	 			
-				selectcontestant.bombshell = true //adding bombshell as an object, we need to do this to 5 randome females to fcontestants
+				const selectcontestant = fcontestantslist[i] //	 
+				// console.log("selecting 5 female bombshells!!!", i)			
+				selectcontestant.bombshell = true //adding bombshell as an object, we need to do this to 5 random females to fcontestants
 
 			} 
-			//  console.log("data!!!!", fcontestantslist)
+			//  console.log("array of 15 female contestants!!", fcontestantslist)
 	}
 	const getIslanderBoys = (boys) => {
-		const allseasonsboys = boys.bachelorette
-		const season14databoys = allseasonsboys["14"] //pulling all men from S14
-		const mcontestantslist = season14databoys.contestants //pulling all males and excludes the bachelorette
+		const allseasonsboys = boys.bachelorette //filtering all male contestants from all seasons
+		const season14databoys = allseasonsboys["14"] //pulling all data from S14
+		// console.log("all data from season 14!!!", season14databoys)
+		const mcontestantslist = season14databoys.contestants //pulling all men from S14
 		mcontestantslist.length = 15; //reduces male islander list to 15 
+		// console.log("array of 15 male islanders!!!", mcontestantslist)
 			for (let i = 0; i <= 4;i ++){ //for loop selects up to 5 male bombshells
 				const selectcontestant = mcontestantslist[i]
 				selectcontestant.bombshell = true
-				// console.log("data!!!!", i)
+				// console.log("selecting 5 male bombshells!!!", selectcontestant.bombshell)
 				}
+				// console.log("list of male contestants!!!", mcontestantslist)
 			}
 	useEffect(()=>{
 		fetch("/data.json")
@@ -38,7 +43,9 @@ export const Home = () => {
 		.then((data)=> {
 			
 		getIslanderGirls(data)
+		// console.log("all data from all bachelor seasons!!", data)
 		getIslanderBoys(data)
+		// console.log("all data from all bachelorette seasons!!", data)
 		})
 	},[]) 
 	return (
