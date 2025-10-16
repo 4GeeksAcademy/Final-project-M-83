@@ -2,12 +2,10 @@ import React, { useEffect } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Leaderboard } from "./Leaderboard.jsx";
-// try and use filter function to console.log only boys, save in a variable called boys
-// try and use filter function to console.log only girls save in a variable called girls
-// try and use filter function to console.log only boys from a given season, and save it in a variable.
+import { loginUser } from "../components/UserCRUD.jsx";
 
 export const Home = () => {
-	const { store, dispatch } = useGlobalReducer()
+	const { store, dispatch } = useGlobalReducer();
 	const getIslanderGirls = (girls) =>{
 			const allseasonsgirls = girls.bachelor //filtering all girls from the bachelor seasons
 			const season23datagirls = allseasonsgirls["23"] //filtering all contestant data from S23
