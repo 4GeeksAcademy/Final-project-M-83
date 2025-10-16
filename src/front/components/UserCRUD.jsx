@@ -3,9 +3,9 @@
 
 
 export const loginUser = (store, dispatch, credentials) => {
-    fetch(store.baseUrl + "login", {
+    fetch(store.baseUrl + "log_in", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "content-type": "application/json" },
         body: JSON.stringify(credentials)
     })
     .then(resp => resp.json())
@@ -42,7 +42,7 @@ export const getAllUsers = (store, dispatch) => {
         })
         .catch(err => console.error("Error fetching users:", err));
 };
-console.log("All users:", getAllUsers());
+
 
 export const signUp = (store , dispatch , userData) => {
     fetch(store.baseUrl + "user",{

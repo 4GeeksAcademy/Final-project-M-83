@@ -5,7 +5,7 @@ import { Leaderboard } from "./Leaderboard.jsx";
 import { loginUser } from "../components/UserCRUD.jsx";
 
 export const Home = () => {
-	const { store, dispatch } = useGlobalReducer()
+	const { store, dispatch } = useGlobalReducer();
 	const getIslanderGirls = (girls) =>{
 			const allseasonsgirls = girls.bachelor //filtering all girls from the bachelor seasons
 			const season23datagirls = allseasonsgirls["23"] //filtering all contestant data from S23
