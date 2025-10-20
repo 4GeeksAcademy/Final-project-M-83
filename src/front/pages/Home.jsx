@@ -13,12 +13,17 @@ export const Home = () => {
 			const season23datagirls = allseasonsgirls["23"] //filtering all contestant data from S23
 			const fcontestantslist = season23datagirls.contestants //actual list of female contestants in S23
 			fcontestantslist.length = 15; //declares length of female islanders we are choosing, 15 
+			// testing adding one photo url to first contestant in array
+			fcontestantslist[0].photo_url = "https://images.unsplash.com/photo-1699061930674-1be64fe86fc3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=683"
 			for (let i = 0;i <=4 ;i++){
 				const selectcontestant = fcontestantslist[i] //	 
 				selectcontestant.bombshell = true //adding bombshell as an object, we need to do this to 5 random females to fcontestants
 
 			} 
 			 console.log("array of 15 female contestants!!", fcontestantslist)
+		 dispatch(
+			{type: "set-islanders", 
+			payload: fcontestantslist});
 	}
 	const getIslanderBoys = (boys) => {
 		const allseasonsboys = boys.bachelorette //filtering all male contestants from all seasons
@@ -32,16 +37,26 @@ export const Home = () => {
 				console.log("list of male contestants!!!", mcontestantslist)
 			}
 	useEffect(()=>{
-		fetch("/data.json")
-		.then((resp)=> resp.json())
-		.then((data)=> {
-			
-		getIslanderGirls(data)
-		getIslanderBoys(data)
+		// fetch("/data.json")
+		// .then((resp)=> resp.json())
+		// .then((data)=> {
+		// console.log("data!!!!!", data)
+		// getIslanderGirls(data)
+		// getIslanderBoys(data)
 		})
 	},[]) 
 	return (
 		<div>
+			<h2>Testing image render</h2>
+			{/* {store.islanders[0] && (
+				<div>
+					<h3>{store.islanders[0].name}</h3>
+					<img 
+					src={store.islanders[0].photo_url} 
+					alt={store.islanders[0].name}
+					width="200"/>
+				</div>
+			)} */}
 			<Leaderboard />
 		</div>
 	);
