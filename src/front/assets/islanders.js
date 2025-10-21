@@ -14,17 +14,17 @@ export const actions = {
 
 
 //  CODE FOR POST METHOD
-    newIslander : (name, age, occupation, hometown, bombshell, store, dispatch) => {
+    newIslander : (islanderData, store, dispatch) => {
         console.log("URL TAG!! :", store.url)
         const options = {
             method: "POST",
             headers: {"content-type":"application/json"},
             body: JSON.stringify({
-                "name": name,
-                "age": age,
-                "occupation": occupation,
-                "hometown": hometown,
-                "bombshell": bombshell
+                "name": islanderData.name,
+                "age": islanderData.age,
+                "occupation": islanderData.occupation,
+                "hometown": islanderData.hometown,
+                "bombshell": islanderData.bombshell
             })
         }
         fetch(store.baseUrl + `islanders`, options)
