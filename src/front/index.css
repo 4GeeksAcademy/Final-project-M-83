@@ -1,0 +1,69 @@
+
+
+/* ===========================
+   💖 LOVE ISLAND COLOR SCHEME
+   =========================== */
+
+/* --- Background Colors --- */
+.islander-pink {
+  background-color: #FF5DA2 !important; /* Sunset Pink */
+}
+
+.islander-turquoise {
+  background-color: #4EC5C1 !important; /* Turquoise Ocean */
+}
+
+.islander-golden {
+  background-color: #FFD166 !important; /* Golden Glow */
+}
+
+.islander-coral {
+  background-color: #FF8661 !important; /* Coral Crush */
+}
+
+.islander-green {
+  background-color: #4CAF50 !important; /* Palm Green */
+}
+
+.islander-blue {
+  background-color: #7BCFFF !important; /* Sky Blue */
+}
+
+.islander-gold {
+  background-color: #D4AF37 !important; /* Champagne Gold */
+}
+
+/* --- Text Colors --- */
+.text-pink {
+  color: #FF5DA2 !important;
+}
+
+.text-turquoise {
+  color: #4EC5C1 !important;
+}
+
+.text-golden {
+  color: #FFD166 !important;
+}
+
+.text-coral {
+  color: #FF8661 !important;
+}
+
+.text-green {
+  color: #4CAF50 !important;
+}
+
+.text-blue {
+  color: #7BCFFF !important;
+}
+
+.text-gold {
+  color: #D4AF37 !important;
+}
+
+
+
+.islander-btn:hover {
+  background-color: #FF8661; /* Coral Crush hover */
+}
