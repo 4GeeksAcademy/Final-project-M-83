@@ -55,9 +55,21 @@ export const Home = () => {
 
 		<div>
 			<Leaderboard />
-			<button 
-			onClick={() => actions.newIslander(maleContestants[0], store, dispatch)}>
-				Add Islander
+			<button
+				onClick={() => maleContestants.forEach(contestant => {
+					actions.newIslander(contestant, store, dispatch)
+				}
+				)
+				}
+			>
+				Add Male Islander
+			</button>
+			<button
+				onClick={() => femaleContestants.forEach(contestant => {
+					actions.newIslander(contestant, store, dispatch)
+				})}
+			>
+				Add Female Islanders
 			</button>
 		</div>
 
