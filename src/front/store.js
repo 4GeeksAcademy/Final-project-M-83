@@ -1,6 +1,13 @@
 export const initialStore = () => {
   return {
     baseUrl: import.meta.env.VITE_BACKEND_URL,
+    islanderInfo: {
+      "name": "",
+      "age": "",
+      "occupation": "",
+      "hometown": "",
+      "bombshell": ""
+    },
     islanders: [],
     users: [],
     auth: {

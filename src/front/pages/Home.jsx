@@ -1,8 +1,16 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Leaderboard } from "./Leaderboard.jsx";
 import { loginUser } from "../components/UserCRUD.jsx";
+import { actions } from "../assets/islanders.js";
+
+export const Home = () => {
+	const { store, dispatch } = useGlobalReducer()
+
+// try and use filter function to console.log only boys, save in a variable called boys
+// try and use filter function to console.log only girls save in a variable called girls
+// try and use filter function to console.log only boys from a given season, and save it in a variable.
 
 export const Home = () => {
 	const { store, dispatch } = useGlobalReducer();
