@@ -2,21 +2,20 @@ export const actions = {
 
 
     // CODE FOR GET METHOD
-      getAllIslanders : (store, setIslanderData, islanderData) =>{
-        fetch(store.baseUrl + `islanders`)
+      getAllIslanders : (store, setIslanderData) =>{
+        fetch(store.baseUrl + `api/islanders`)
         .then((resp) => resp.json())
         .then((data) => {
             setIslanderData(data.islanders)
-            console.log("THEN: ", data.islanders)
         }
         )
     },
 
 
 //  CODE FOR POST METHOD
-    newIslander : (islanderData, store, dispatch) => {
-        console.log("URL TAG!! :", store.url)
-        const options = {
+    newIslander :async (islanderData, store, dispatch) => {
+        try{
+            const options = {
             method: "POST",
             headers: {"content-type":"application/json"},
             body: JSON.stringify({
@@ -27,9 +26,14 @@ export const actions = {
                 "bombshell": islanderData.bombshell
             })
         }
-        fetch(store.baseUrl + `islanders`, options)
-        .then((resp) => resp.json())
-        .then((data) => dispatch({ payload: data.islander, type: "set-islanders" }))
+        const resp = await fetch(store.baseUrl + `api/islanders`, options)
+        const data = await resp.json()
+        dispatch({ payload: data.islander, type: "set-islanders" })
+        }
+        catch(e){
+            console.log("Error posting new islander!!!!! :", e)
+        }
+        
     },
 
 // CODE FOR PUT METHOD

@@ -13,8 +13,9 @@ export const Home = () => {
 	const { store, dispatch } = useGlobalReducer()
 	const [femaleContestants, setFemaleContestants] = useState([])
 	const [maleContestants, setMaleContestants] = useState([])
+	const [allIslanders, setAllIslanders] = useState(null)
 
-	const getIslanderGirls = (girls) => {
+	const getIslanderGirls = async (girls) => {
 		const allseasonsgirls = girls.bachelor //filtering all girls from the bachelor seasons
 		const season23datagirls = allseasonsgirls["23"] //filtering all contestant data from S23
 		const fcontestantslist = season23datagirls.contestants //actual list of female contestants in S23
@@ -23,7 +24,9 @@ export const Home = () => {
 			const selectcontestant = fcontestantslist[i] //	 
 			selectcontestant.bombshell = true //adding bombshell as an object, we need to do this to 5 random females to fcontestants
 		}
-		console.log("array of 15 female contestants!!", fcontestantslist)
+		for (const girl of fcontestantslist){
+			await actions.newIslander(girl, store, dispatch)
+		}
 		setFemaleContestants(fcontestantslist)
 	}
 
@@ -36,21 +39,51 @@ export const Home = () => {
 			const selectcontestant = mcontestantslist[i]
 			selectcontestant.bombshell = true
 		}
-		console.log("list of male contestants!!!", mcontestantslist)
+		mcontestantslist.forEach(
+			(boy) => {
+				actions.newIslander(boy, store, dispatch)
+			}
+		) 
 		setMaleContestants(mcontestantslist)
 	}
 
-	
-	useEffect(() => {
-		fetch("/data.json")
-			.then((resp) => resp.json())
-			.then((data) => {
-
+	const fetchJsonData = async() => {
+		try{
+			const response = await fetch("/data.json")
+			const data = await response.json()
 				getIslanderGirls(data)
 				getIslanderBoys(data)
-			})
-	}, [femaleContestants, maleContestants])
+		}
+		catch(e){
+			console.log("Error getting json data!!!!! :", e)
+		}
+		
+	}
+	// Step 1: Fetch islanders on mount
+useEffect(async() => {
+    // We set 'allIslanders' to null initially to know we are "loading"
+    // const [allIslanders, setAllIslanders] = useState(null); 
+    
+    await actions.getAllIslanders(store, setAllIslanders);
+}, []); // Runs once on mount
 
+// Step 2: React to the result of the fetch
+useEffect(() => {
+    // Don't do anything until allIslanders is set (it's not null)
+    if (allIslanders === null) {
+        return; // Still loading
+    }
+
+    // Now we have the result
+    if (allIslanders.length === 0) {
+        console.log("No islanders found, fetching new data...");
+        fetchJsonData();
+    } else {
+        console.log("There ARE islanders in the array");
+    }
+	
+}, [allIslanders]); // This effect runs *after* allIslanders changes
+console.log("ALL ILANDERS TAG!!!!!!!!! :", allIslanders)
 	return (
 
 		<div>
