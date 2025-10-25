@@ -19,7 +19,7 @@ class User(db.Model):
     phonenumber = Column(Integer, unique=True, nullable=True)
     profile_image = Column(String(260), nullable=True)
     favorite_islanders = relationship("Islander", secondary=favorite_islanders)
-    password = Column(String(70), unique=False, nullable=False)
+    password = Column(String(500), unique=False, nullable=False)
 
     def serialize(self):
         return {
