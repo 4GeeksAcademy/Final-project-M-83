@@ -145,29 +145,26 @@ def islander_info(islander_id):
 @api.route('/islanders', methods=['POST'])
 def post_islander():
     request_body = request.get_json()
+    
+
     islander = Islander.query.filter_by(name = request_body.get('name')).first()
     if islander:
-        return jsonify({"msg": "Islander already exists"}), 302
-    else:
+        return jsonify({"msg": "islander already in DB"})
+    new_islander = Islander(
+        name = request_body.get('name'),
+        age = request_body.get('age'),
+        occupation = request_body.get('occupation'),
+        hometown = request_body.get('hometown'),
+        bombshell = request_body.get('bombshell', False)
+    )
 
-
-        new_islander = Islander(
-            name = request_body.get('name'),
-            age = request_body.get('age'),
-            occupation = request_body.get('occupation'),
-            hometown = request_body.get('hometown'),
-            bombshell = request_body.get('bombshell', False)
-        )
-
-        db.session.add(new_islander)
-        db.session.commit()
-
-        response_body = {
-            "msg": "New Islander has been added!",
-            "islander": new_islander.serialize()
-        }
-
-        return jsonify(response_body), 201
+    db.session.add(new_islander)
+    db.session.commit()
+    
+    return jsonify({
+        "msg": "islanders added successfully",
+        "islanders": new_islander
+    }), 201
 
 @api.route('/islanders/<int:islander_id>', methods=['PUT'])
 def update_islander(islander_id):
