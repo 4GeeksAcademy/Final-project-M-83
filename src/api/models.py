@@ -35,7 +35,7 @@ class User(db.Model):
 class Islander (db.Model):
     __tablename__ = "islander"
     id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False)
+    name = Column(String(100), unique=True, nullable=False)
     age = Column(Integer, nullable=True)
     occupation = Column(String(100), nullable=True)
     hometown = Column(String(100), nullable=True)
