@@ -95,7 +95,7 @@ export const Home = () => {
 	return (
 		<div>
 			<h2>Meet the Girls</h2>
-			<div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+			<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "0px" }}>
 				{girls.map((girl, index) => (
 					<div key={index} style={{ textAlign: "center" }}>
 						<img
@@ -111,7 +111,7 @@ export const Home = () => {
 				))}
 			</div>
 			<h2>Meet the Guys</h2>
-			<div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+			<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "10px" }}>
 				{boys.map((boy, index) => (
 					<div key={index} style={{ textAlign: "center" }}>
 						<img
@@ -127,7 +127,7 @@ export const Home = () => {
 				))}
 			</div>
 
-			<Leaderboard />
+			
 		</div>
 	);
 }; 
