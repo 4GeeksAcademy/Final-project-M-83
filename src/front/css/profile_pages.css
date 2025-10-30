@@ -1,0 +1,175 @@
+
+    /* 🌴 Full-page layout */
+.li-profile-page {
+  min-height: 100vh;
+
+
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Center everything more */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 24px;
+}
+
+/* 🪞Container grid (cards side by side) */
+.li-container {
+  display: grid;
+  grid-template-columns: 1fr minmax(360px, 460px);
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* 💖 Profile Card */
+.li-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ffd166;
+  overflow: hidden;
+  padding-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.li-card:hover {
+  transform: scale(1.02);
+}
+
+/* 📸 Profile Image */
+.li-photo-wrap {
+  padding: 20px;
+}
+
+.li-photo {
+  width: 100%;
+  max-height: 380px; /* ⬆️ slightly taller image */
+  object-fit: cover;
+  border-radius: 16px;
+  border: 5px solid #ffd166;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 📋 Card content */
+.li-card-body {
+  padding: 20px 28px;
+}
+
+.li-title {
+  margin: 6px 0 18px 0;
+  font-size: 2rem; /* ⬆️ larger name text */
+  font-weight: 800;
+  text-align: center;
+}
+
+.li-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 1.1rem; /* ⬆️ larger row text */
+}
+
+.li-label {
+  font-weight: 700;
+}
+
+.li-value {
+  font-weight: 600;
+}
+
+.li-divider {
+  border: none;
+  height: 1px;
+  background: #eee;
+  margin: 6px 0;
+}
+
+/* 💎 Favorites chip */
+.li-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  background: linear-gradient(90deg, #ff5da2, #4ec5c1);
+}
+
+/* 💌 Right column (matches + account) */
+.li-side {
+  display: grid;
+  gap: 24px;
+}
+
+.li-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ffd166;
+}
+
+.li-box-title {
+  font-size: 1.4rem; /* ⬆️ larger section title */
+  font-weight: 800;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* 🩵 Matches */
+.li-matches {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.li-match {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.li-match-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: repeating-linear-gradient(
+    -45deg,
+    #eee, #eee 10px,
+    #ddd 10px, #ddd 20px
+  );
+}
+
+/* ❤️ Delete Button */
+.li-danger-btn {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  cursor: pointer;
+  background-color: #ff5da2; /* islander pink */
+  transition: all 0.2s ease;
+}
+
+.li-danger-btn:hover {
+  background-color: #ff8661;
+  transform: scale(1.05);
+}
+
+/* 📱 Responsive */
+@media (max-width: 900px) {
+  .li-container {
+    grid-template-columns: 1fr;
+  }
+}
