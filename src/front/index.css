@@ -5,6 +5,17 @@
    =========================== */
 
 /* --- Background Colors --- */
+body{
+   
+    background: linear-gradient(
+        180deg,
+        #ff5da2 0%,     /* Sunset Pink */
+        #ff8661 20%,    /* Coral Crush */
+        #ffd166 50%,    /* Golden Glow */
+        #4ec5c1 75%,    /* Turquoise Ocean */
+        #7bcfff 100%    /* Sky Blue */
+    );
+}
 .islander-pink {
   background-color: #FF5DA2 !important; /* Sunset Pink */
 }
