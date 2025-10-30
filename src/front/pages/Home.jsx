@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Leaderboard } from "./Leaderboard.jsx";
+import { loginUser } from "../components/UserCRUD.jsx";
 import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
 
 export const Home = () => {
+
 	const { store, dispatch } = useGlobalReducer()
 	  const [femaleContestants, setFemaleContestants] = useState([]);
   const [maleContestants, setMaleContestants] = useState([]);
@@ -14,6 +16,7 @@ export const Home = () => {
   // ---------------------------
   // Helper functions
   // ---------------------------
+
 
   const getIslanderGirls = async (girls) => {
     const allSeasonsGirls = girls.bachelor;
@@ -92,12 +95,7 @@ export const Home = () => {
     init();
   }, []);
 
-  // Debugging log — only runs when allIslanders updates
-  useEffect(() => {
-    if (allIslanders) {
-      console.log("ALL ISLANDERS TAG!!!!!!!!! :", allIslanders);
-    }
-  }, [allIslanders]);
+
 
 	return (
 		<div>
@@ -138,3 +136,5 @@ export const Home = () => {
 		</div>
 	);
 }; 
+
+  
