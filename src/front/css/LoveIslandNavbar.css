@@ -1,0 +1,130 @@
+
+
+/* ——— Base bar ——— */
+.love-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  /* translucent pink overlay that matches your page gradient */
+  background: rgba(255, 93, 162, 0.7);
+  backdrop-filter: blur(8px);
+
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  /* layout tuning knobs (adjust to taste) */
+  --container-max: 1400px; /* how wide the navbar can get on big screens */
+  --pad-left: 28px;        /* left inner padding (brand side) */
+  --pad-right: 90px;       /* right inner padding (links side) */
+  --gap-links: 28px;       /* space between each nav item */
+}
+
+/* ——— Inner layout ——— */
+.love-navbar .inner {
+  width: 100vw;                  /* use full viewport width */
+  max-width: none;               /* ignore global container limits */
+  margin: 0;                     /* remove global centering */
+  padding: 14px 90px 14px 40px;  /* left=40, right=90 for balance */
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ——— Brand (heart + title) ——— */
+.love-navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #fff;
+  text-decoration: none;
+  user-select: none;
+
+  /* make the title slightly larger so it anchors visually on the left */
+  font-weight: 700;
+  font-size: 1.35rem;
+
+  /* tiny nudge left so it feels closer to the edge */
+  margin-left: -6px;
+}
+
+/* Heart badge: no square bg; soft glow only */
+.love-navbar .brand .badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* bigger heart */
+  font-size: 1.8rem;
+  color: #FF5DA2; /* Sunset Pink */
+  background: none;
+
+  /* glow: pink → coral → gold */
+  text-shadow:
+    0 0 8px rgba(255, 93, 162, 0.85),
+    0 0 16px rgba(255, 134, 97, 0.65),
+    0 0 24px rgba(255, 209, 102, 0.45);
+
+  transition: transform 0.2s ease, text-shadow 0.25s ease;
+}
+.love-navbar .brand .badge:hover {
+  transform: scale(1.08);
+  text-shadow:
+    0 0 12px rgba(255, 93, 162, 1),
+    0 0 24px rgba(255, 134, 97, 0.85),
+    0 0 36px rgba(255, 209, 102, 0.65);
+}
+
+/* ——— Links row ——— */
+.love-navbar nav {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-links);
+}
+
+/* Standard links */
+.love-navbar nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+.love-navbar nav a:hover {
+  color: #FFD166; /* Golden Glow hover */
+}
+
+/* CTA: Sign In / Log In */
+.love-navbar .cta {
+  margin-left: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #fff;
+  color: #FF5DA2;              /* Sunset Pink text */
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.love-navbar .cta:hover {
+  background: #FFD166;         /* Golden hover */
+  color: #FF8661;              /* Coral text for contrast */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.22);
+}
+
+
+@media (max-width: 1000px) {
+  .love-navbar .inner {
+    left: 0;
+    width: 100%;
+    padding: 12px 20px;
+  }
+}

@@ -1,40 +1,35 @@
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "../css/LoveIslandNavbar.css";
 
-export const Navbar = () => {
 
-	return (
-		<nav>
-			<ul>
-			<div className="container">
-				<li>
-					<Link to="/">
-					<span className="navbar-brand mb-0 h1">Love Island - Home</span>
-					</Link>
-				</li>
-				<li>
-					<Link to="/voting">
-					<button className="btn btn-primary">VOTE</button>
-					</Link>
-				</li>
-				<li>
-					<Link to="/leaderboard">
-					</Link>
-				</li>
-				<li>
-					<Link to="/islanders">
-					</Link>
-				</li>
-				<li>
-					<Link to="/profile">
-					</Link>
-				</li>
-				<li>
-					<Link to="/signuplogin">
-					Sign Up/Log In
-					</Link>
-				</li>
-			</div>
-			</ul>
-		</nav>
-	);
-};
+export default function Navbar() {
+const navItems = [
+{ label: "Voting", to: "/voting" },
+{ label: "Islanders", to: "/islanders" },
+{ label: "Leaderboard", to: "/leaderboard" },
+];
+
+
+return (
+<>
+<header className="love-navbar">
+<div className="inner">
+<Link to="/" className="brand">
+<span className="badge">💗</span>
+<span>Love Island</span>
+</Link>
+
+
+<nav>
+{navItems.map((item) => (
+<Link key={item.label} to={item.to}>{item.label}</Link>
+))}
+<Link to="/signuplogin" className="cta">Sign In / Log In</Link>
+</nav>
+</div>
+</header>
+<div className="love-navbar-spacer" />
+</>
+);
+}
