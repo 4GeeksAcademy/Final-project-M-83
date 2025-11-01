@@ -155,6 +155,7 @@ def post_islander():
         age = request_body.get('age'),
         occupation = request_body.get('occupation'),
         hometown = request_body.get('hometown'),
+        gender = request_body.get('gender'),
         bombshell = request_body.get('bombshell', False),
         photo_url = request_body.get("photo_url")
     )

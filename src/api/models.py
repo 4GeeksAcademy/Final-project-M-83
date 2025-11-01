@@ -39,6 +39,7 @@ class Islander (db.Model):
     age = Column(Integer, nullable=True)
     occupation = Column(String(100), nullable=True)
     hometown = Column(String(100), nullable=True)
+    gender = Column(String(10), nullable=False)
     bombshell = Column(Boolean, default=False)  
     photo_url = Column(String(260), nullable=True)
     
@@ -49,6 +50,7 @@ class Islander (db.Model):
             "age": self.age,
             "occupation": self.occupation,
             "hometown": self.hometown,
+            "gender": self.gender,
             "bombshell": self.bombshell,
             "photo_url": self.photo_url
         }
