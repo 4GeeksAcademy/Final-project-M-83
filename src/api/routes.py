@@ -156,7 +156,8 @@ def post_islander():
         occupation = request_body.get('occupation'),
         hometown = request_body.get('hometown'),
         gender = request_body.get('gender'),
-        bombshell = request_body.get('bombshell', False)
+        bombshell = request_body.get('bombshell', False),
+        photo_url = request_body.get("photo_url")
     )
 
     db.session.add(new_islander)

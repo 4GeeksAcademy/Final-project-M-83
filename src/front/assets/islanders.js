@@ -40,7 +40,8 @@ export const actions = {
                 "occupation": islanderData.occupation,
                 "hometown": islanderData.hometown,
                 "gender": islanderData.gender,
-                "bombshell": islanderData.bombshell
+                "bombshell": islanderData.bombshell,
+                "photo_url": islanderData.photo_url
             })
         }
         const resp = await fetch(store.baseUrl + `api/islanders`, options)
