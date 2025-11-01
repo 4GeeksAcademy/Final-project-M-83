@@ -1,14 +1,30 @@
+import { Gitlab } from "lucide-react"
+
 export const actions = {
 
 
     // CODE FOR GET METHOD
-      getAllIslanders : (store, setIslanderData) =>{
-        fetch(store.baseUrl + `api/islanders`)
-        .then((resp) => resp.json())
-        .then((data) => {
+      getAllIslanders :async (store, setIslanderData, setFemaleContestants, setMaleContestants) =>{
+        try{
+            const resp = await fetch(store.baseUrl + `api/islanders`)
+            const data = await resp.json()
+            const male = data.islanders.filter(
+                (boy) => boy.gender === "Male"
+            )
+            const female = data.islanders.filter(
+                (girl) => girl.gender === "Female"
+            )
+            console.log("FILTER FUNCTION TAG FOR BOY!!!!!!!! :", male)
+            console.log("FILTER FUNCTION TAG FOR GIRL!!!!!!!! :", female)
             setIslanderData(data.islanders)
+            setMaleContestants(male)
+            setFemaleContestants(female)
+            return data.islanders
         }
-        )
+        catch(e){
+            console.log("Error Getting Islanders!!!!!!!!!! :", e)
+        }
+
     },
 
 
@@ -23,6 +39,7 @@ export const actions = {
                 "age": islanderData.age,
                 "occupation": islanderData.occupation,
                 "hometown": islanderData.hometown,
+                "gender": islanderData.gender,
                 "bombshell": islanderData.bombshell
             })
         }

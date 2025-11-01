@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Leaderboard } from "./Leaderboard.jsx";
-import { loginUser } from "../components/UserCRUD.jsx";
+import {loginUser} from "../assets/Users.js"
 import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
 
@@ -23,7 +23,8 @@ export const Home = () => {
     const season23DataGirls = allSeasonsGirls["23"];
     const fcontestantslist = season23DataGirls.contestants.slice(0, 15); // safely get first 15
 	  fcontestantslist.forEach((contestant, index) => {
-			contestant.photo_url = fphotoUrls[index] || contestant.photo_url; 
+			contestant.photo_url = fphotoUrls[index] || contestant.photo_url;
+      contestant.gender = "Female"
 		});
     // Mark 5 bombshells
     for (let i = 0; i < 5; i++) {
@@ -44,6 +45,7 @@ export const Home = () => {
     const mcontestantslist = season14DataBoys.contestants.slice(0, 15); // safely get first 15
     mcontestantslist.forEach((contestant, index) => {
 			contestant.photo_url = mphotoUrls[index] || contestant.photo_url
+      contestant.gender = "Male"
 		});
     // Mark 5 bombshells
     for (let i = 0; i < 5; i++) {
@@ -77,16 +79,13 @@ export const Home = () => {
 
   useEffect(() => {
     const init = async () => {
-      // Try to get islanders from backend
-      const data = await actions.getAllIslanders(store, setAllIslanders);
-
-      // If empty, fetch from JSON and repopulate
+      const data = await actions.getAllIslanders(store, setAllIslanders, setFemaleContestants, setMaleContestants);
       if (!data || data.length === 0) {
         console.log("No islanders found, fetching new data...");
         await fetchJsonData();
 
-        // Once done, re-fetch so state updates with the new 30 islanders
-        await actions.getAllIslanders(store, setAllIslanders);
+
+        await actions.getAllIslanders(store, setAllIslanders, setFemaleContestants, setMaleContestants);
       } else {
         console.log("Islanders already exist in backend ✅");
       }
