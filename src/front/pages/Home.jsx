@@ -5,6 +5,7 @@ import { Leaderboard } from "./Leaderboard.jsx";
 import {loginUser} from "../assets/Users.js";
 import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
+import { HomeCarousel } from "../components/HomeCarousel.jsx";
 
 export const Home = () => {
 
@@ -98,6 +99,8 @@ export const Home = () => {
 
 	return (
 		<div>
+       <h1 className="text-center mt-4">Welcome to Love Island Interactive</h1>
+      <HomeCarousel />
 			<h2>Meet the Girls</h2>
 			<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "0px" }}>
 				{femaleContestants.map((girl, index) => (
