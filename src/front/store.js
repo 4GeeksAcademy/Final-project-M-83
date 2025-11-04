@@ -68,6 +68,14 @@ export default function storeReducer(store, action = {}) {
         islanders: action.payload,
       };
 
+    case "update-islander-votes":
+      return {
+      ...store,
+      islanders: store.islanders.map(i =>
+        i.id === action.payload.id ? { ...i, votes: action.payload.votes } : i
+      ),
+    };
+  
     case "add-favorite":
       return {
         ...store,

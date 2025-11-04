@@ -45,7 +45,7 @@ export const getAllUsers = (store, dispatch) => {
 
 
 export const signUp = (store , dispatch , userData) => {
-    fetch(store.baseUrl + "user",{
+    fetch(store.baseUrl + "sign_up",{
         method: "POST",
         headers: { "Content-Type" : "application/json"},
         body: JSON.stringify (userData)
