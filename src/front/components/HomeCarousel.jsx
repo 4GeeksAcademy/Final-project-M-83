@@ -2,18 +2,42 @@ import React from "react";
 
 export const HomeCarousel = () => {
 return (
-    <Carousel fade className="carousel">
-{/* //voting */}
- <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="https://private-user-images.githubusercontent.com/95265085/508472626-7cc3f8c3-dd5c-4dd3-87c0-c61a47d57a25.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE5NTc3MzYsIm5iZiI6MTc2MTk1NzQzNiwicGF0aCI6Ii85NTI2NTA4NS81MDg0NzI2MjYtN2NjM2Y4YzMtZGQ1Yy00ZGQzLTg3YzAtYzYxYTQ3ZDU3YTI1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTAxVDAwMzcxNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWM3ZmQzMWU1MmZlODk0ZWNmMmE5YmE4OWUzYjRmNDEwMWE0MDEzYmVlOWVhNGJiZWYyN2EwODU0ZDUwNGNjODImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.N5RsKDtqXL1KTUgwPq09oqSF-_3hUWI4sNOf4gQfczM"
-          alt="Vote for contestants"
-        />
-        <Carousel.Caption>
-          <h3>Vote for Your Favorite Contestants</h3>
-          <p>Engage in real-time and support your favorite islanders with one click!</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-</Carousel>
+  <div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://i.imgur.com/v64awNU.jpeg" class="d-block w-100" alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Vote for Your Favorite Contestants!</h5>
+        <p>Support your favorite islanders with just one click!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.imgur.com/5uHEQ17.jpeg" class="d-block w-100" alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Favorite an Islander</h5>
+        <p>Save your top picks and access them anytime.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.imgur.com/pyI5qgb.png" class="d-block w-100" alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Stay Updated on Bombshells</h5>
+        <p>Be the first to know when new bombshells enter the villa 💣</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 );};

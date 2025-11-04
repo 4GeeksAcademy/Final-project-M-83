@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Leaderboard } from "./Leaderboard.jsx";
-import {loginUser} from "../assets/Users.js";
+import { loginUser } from "../assets/Users.js";
 import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
-import { HomeCarousel } from "../components/HomeCarousel.jsx";
+import { HomeCarousel } from "../components/HomeCarousel.jsx"
 
 export const Home = () => {
 
-	const { store, dispatch } = useGlobalReducer()
-	  const [femaleContestants, setFemaleContestants] = useState([]);
+  const { store, dispatch } = useGlobalReducer()
+  const [femaleContestants, setFemaleContestants] = useState([]);
   const [maleContestants, setMaleContestants] = useState([]);
   const [allIslanders, setAllIslanders] = useState(null);
 
@@ -23,10 +23,10 @@ export const Home = () => {
     const allSeasonsGirls = girls.bachelor;
     const season23DataGirls = allSeasonsGirls["23"];
     const fcontestantslist = season23DataGirls.contestants.slice(0, 15); // safely get first 15
-	  fcontestantslist.forEach((contestant, index) => {
-			contestant.photo_url = fphotoUrls[index] || contestant.photo_url;
+    fcontestantslist.forEach((contestant, index) => {
+      contestant.photo_url = fphotoUrls[index] || contestant.photo_url;
       contestant.gender = "Female"
-		});
+    });
     // Mark 5 bombshells
     for (let i = 0; i < 5; i++) {
       fcontestantslist[i].bombshell = true;
@@ -45,9 +45,9 @@ export const Home = () => {
     const season14DataBoys = allSeasonsBoys["14"];
     const mcontestantslist = season14DataBoys.contestants.slice(0, 15); // safely get first 15
     mcontestantslist.forEach((contestant, index) => {
-			contestant.photo_url = mphotoUrls[index] || contestant.photo_url
+      contestant.photo_url = mphotoUrls[index] || contestant.photo_url
       contestant.gender = "Male"
-		});
+    });
     // Mark 5 bombshells
     for (let i = 0; i < 5; i++) {
       mcontestantslist[i].bombshell = true;
@@ -97,46 +97,57 @@ export const Home = () => {
 
 
 
-	return (
-		<div>
-       <h1 className="text-center mt-4">Welcome to Love Island Interactive</h1>
+  return (
+    <div className="container mt-4">
       <HomeCarousel />
-			<h2>Meet the Girls</h2>
-			<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "0px" }}>
-				{femaleContestants.map((girl, index) => (
-					<div key={index} style={{ textAlign: "center" }}>
-						<img
-							src={girl.photo_url}
-							alt={girl.name || `Contestant ${index + 1}`}
-							width="150"
-							height="200"
-							style={{ borderRadius: "10px", objectFit: "cover" }}
-						/>
-						<p>{girl.name || "Unknown"}</p>
-						{girl.bombshell && <p style={{ color: "red" }}>💣 Bombshell!</p>}
-					</div>
-				))}
-			</div>
-			<h2>Meet the Guys</h2>
-			<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "10px" }}>
-				{maleContestants.map((boy, index) => (
-					<div key={index} style={{ textAlign: "center" }}>
-						<img
-							src={boy.photo_url}
-							alt={boy.name || `Contestant ${index + 1}`}
-							width="150"
-							height="200"
-							style={{ borderRadius: "10px", objectFit: "cover" }}
-						/>
-						<p>{boy.name || "Unknown"}</p>
-						{boy.bombshell && <p style={{ color: "red" }}>💣 Bombshell!</p>}
-					</div>
-				))}
-			</div>
+      <div className="row">
 
-			
-		</div>
-	);
-}; 
+        {/* Bombshell Column */}
+        <div className="col-md-4">
+          <div className="bombshellCard p-3 text-center text-white rounded-3">
+            <h6 className="fw-bold mb-2">🚨 BOMBHELL ALERT!</h6>
+          </div>
+        </div>
 
-  
+        {/* Girls and Boys Column */}
+        <div className="col-md-8">
+
+          {/* Girls Section */}
+          <div className="girlsSection p-3 mb-4 rounded-3">
+            <h5 className="fw-bold mb-3">Meet The Girls</h5>
+            <div className="scrollingRow">
+              {femaleContestants.map((girl, index) => (
+                <div className="contestant-card text-center" key={index}>
+                  <img
+                    src={girl.photo_url}
+                    alt={girl.name || `Contestant ${index + 1}`}
+                  />
+                  <p>{girl.name || "Unknown"}</p>
+                  {girl.bombshell && <p style={{ color: "red" }}>💣 Bombshell!</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Boys Section */}
+          <div className="boysSection p-3 rounded-3">
+            <h5 className="fw-bold mb-3">Meet The Boys</h5>
+            <div className="scrollingRow">
+              {maleContestants.map((boy, index) => (
+                <div className="contestant-card text-center" key={index}>
+                  <img
+                    src={boy.photo_url}
+                    alt={boy.name || `Contestant ${index + 1}`}
+                  />
+                  <p>{boy.name || "Unknown"}</p>
+                  {boy.bombshell && <p style={{ color: "red" }}>💣 Bombshell!</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  );
+};
