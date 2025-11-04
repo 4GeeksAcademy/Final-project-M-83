@@ -3,16 +3,17 @@
 
 
 export const loginUser = (store, dispatch, credentials) => {
-    fetch(store.baseUrl + "api/log_in", {
+    fetch(store.baseUrl + "api/log_in"), {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(credentials)
-    })
+    }
     .then(resp => resp.json())
     .then(data => {
         console.log("Login data:", data);
         if (data.token) {
             localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user))
             dispatch({
                 type: "setAuth",
                 payload: {
@@ -107,4 +108,24 @@ export const logoutUser = (dispatch) => {
     dispatch({
         type: "logout"
     });
+};
+
+export const getLoggedInUser = (dispatch) => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+        try {
+              dispatch({
+                type: "setAuth",
+                payload: {
+                    isAuthenticated: true,
+                    token: localStorage.getItem("token"),
+                    user: JSON.parse(userData)
+                }
+            });
+        } catch (error) {
+            console.error("Error parsing user data:", error);
+            return null;
+        }
+    }
+    return null;
 };

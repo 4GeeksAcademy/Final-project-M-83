@@ -7,6 +7,7 @@ import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
 import { HomeCarousel } from "../components/HomeCarousel.jsx"
 
+
 export const Home = () => {
 
   const { store, dispatch } = useGlobalReducer()
@@ -91,7 +92,7 @@ export const Home = () => {
         console.log("Islanders already exist in backend ✅");
       }
     };
-
+   
     init();
   }, []);
 
@@ -105,7 +106,7 @@ export const Home = () => {
         {/* Bombshell Column */}
         <div className="col-md-4">
           <div className="bombshellCard p-3 text-center text-white rounded-3">
-            <h6 className="fw-bold mb-2">🚨 BOMBHELL ALERT!</h6>
+            <h6 className="fw-bold mb-2">🚨 BOMBSHELL ALERT!</h6>
           </div>
         </div>
 
