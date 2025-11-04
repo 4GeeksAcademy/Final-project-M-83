@@ -79,7 +79,7 @@ body{
   background-color: #FF8661; /* Coral Crush hover */
 }
 
-.login-register-card {
+.loginCard {
   width: 800px;
   height: 450px;
   background-color: white;
@@ -87,12 +87,12 @@ body{
   overflow: hidden;
 }
 
-.login-input {
+.loginInput {
   flex: 1;
   background-color: #fff;
 }
 
-.register-section {
+.registerSection {
   flex: 1;
   background-color: #4ecdc4; /* teal-like color */
 }

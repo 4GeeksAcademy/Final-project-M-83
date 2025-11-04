@@ -1,47 +1,81 @@
 import React, { useState, useEffect } from "react"
 import storeReducer from "../store";
 import "../index.css"
+import { signUp } from "../assets/Users";
+import { loginUser } from "../assets/Users";
+import { logoutUser } from "../assets/Users";
 
 export const SignupLogin = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [statusMessage, setStatusMessage] = useState("")
+    const [displayModal, setDisplayModal] = useState("")
+    const [registerEmail, setRegisterEmail] = useState("")
+    const [registerPassword, setRegisterPassword] = useState("")
+    const [registerUsername, setRegisterUsername] = useState("")
+    const [registerPhone, setRegisterPhone] = useState("")
+    const [registerProfImg, setRegisterProfImg] = useState("")
 
-    const signingUp = () => {
-        let options = {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        }
-        fetch(store.baseUrl + `api/sign_up`, options)
-        .then((resp) => resp.json())
-        // .then((data) => )
-    };
+    const registering = (e) => {
+        e.preventDeault();
 
-    const logingIn = () => {
-        let options = {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
+        const userData = {
+            email: registerEmail,
+            password: registerPassword,
+            username: registerUsername,
+            phonenumber: registerPhone,
+            profile_image: registerProfImg
         }
-        fetch(store.baseUrl + `api/log_in`, options)
-        .then((resp) => resp.json())
-        .then((data) => {
-            setStatusMessage(data.message)
-        })
     }
+
+    const signUp = (store , dispatch , userData) => {
+    fetch(store.baseUrl + "user",{
+        method: "POST",
+        headers: { "Content-Type" : "application/json"},
+        body: JSON.stringify (userData)
+    })
+    .then((resp)=> resp.json())
+    .then((data)=>{
+        console.log("User Created:", data);
+        dispatch({
+        type: "addUser",
+        payload:data.user || data
+    });
+})
+    .catch(err => console.error("Error creating user :",err));
+};
+
+    const loginUser = (store, dispatch, credentials) => {
+    fetch(store.baseUrl + "log_in", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(credentials)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        console.log("Login data:", data);
+        if (data.token) {
+            localStorage.setItem("token", data.token);
+            dispatch({
+                type: "setAuth",
+                payload: {
+                    isAuthenticated: true,
+                    token: data.token,
+                    user: data.user
+                }
+            });
+        } else {
+            alert("Invalid credentials");
+        }
+    })
+    .catch(err => console.error("Login error:", err));
+};
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100">
-            <div className="login-register-card d-flex shadow-lg">
+            <div className="loginCard d-flex shadow-lg">
 
-                <div className="login-input p-5">
+                <div className="loginInput p-5">
                     <h2 className="text-center mb-4">Log In</h2>
 
                     <div className="mb-3">
@@ -82,7 +116,7 @@ export const SignupLogin = () => {
                     </div>
                 </div>
 
-                <div className="register-section text-center d-flex flex-column justify-content-center align-items-center">
+                <div className="registerSection text-center d-flex flex-column justify-content-center align-items-center">
                     <h3 className="mb-3 text-white">Register</h3>
                     <p className="text-white mb-4">
                         Don’t have an account? Register now!
