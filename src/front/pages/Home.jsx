@@ -5,6 +5,7 @@ import { Leaderboard } from "./Leaderboard.jsx";
 import { loginUser } from "../assets/Users.js";
 import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
+import { HomeCarousel } from "../components/HomeCarousel.jsx"
 
 export const Home = () => {
 
@@ -98,6 +99,7 @@ export const Home = () => {
 
   return (
     <div className="container mt-4">
+      <HomeCarousel />
       <div className="row">
 
         {/* Bombshell Column */}
