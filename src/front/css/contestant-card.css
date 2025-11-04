@@ -1,92 +1,133 @@
-.contestant-card {
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s ease;
-  width: 250px;
-  margin: 0 auto;
+/* Card */
+.contestant-card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+  overflow:hidden;
+  width:280px;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.contestant-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 36px rgba(0,0,0,.16),
+             0 0 0 6px rgba(255,93,162,.10);
 }
 
-.contestant-card:hover {
-  transform: translateY(-5px);
-}
-
+/* --- Image: fill container perfectly --- */
 .contestant-image-container {
   width: 100%;
-  height: 250px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
+  background: #f3f3f3;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  padding: 0 !important;        /* kill any inherited padding */
 }
 
 .contestant-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: block !important;     /* kill inline gaps */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;  /* fill without distortion */
+  object-position: center !important;
+  margin: 0 !important;
+  border: 0 !important;          /* in case something adds a border */
+  transform: scale(1.02);
+  transition: transform .4s ease;
+}
+/* cute hover */
+.contestant-card:hover .contestant-image{ transform:scale(1.06); }
+
+/* Content */
+.contestant-info{ padding:14px 16px 16px; }
+
+/* Name */
+.contestant-name{
+  color:#4ec5c1;
+  font-size:1.14rem;
+  font-weight:800;
+  line-height:1.15;
+  margin:4px 0 10px;
+  text-align:center;
+  min-height:2.4em;          /* keeps rows aligned across cards */
 }
 
-.contestant-info {
-  padding: 1rem;
+/* --- Meta list: WRAPS (no truncation) --- */
+.contestant-meta{
+  list-style:none;
+  margin:0 0 14px;
+  padding:0;
+  display:grid;
+  gap:6px;
+}
+.meta{
+  display:grid;
+  grid-template-columns: 100px 1fr;  /* label fixed, value flexible */
+  align-items:start;
+  gap:10px;
+  padding:8px 10px;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:10px;
+  background:#fff;
+}
+.meta-label{
+  color:#8a8a8a;
+  font-size:.86rem;
+  font-weight:600;
+  letter-spacing:.2px;
+}
+.meta-value{
+  color:#333;
+  font-size:.92rem;
+  font-weight:700;
+  line-height:1.25;
+  /* allow wrapping instead of cutting */
+  white-space:normal;
+  word-break:break-word;
+  overflow:visible;
+  text-overflow:clip;
+  text-align:left;
 }
 
-.contestant-name {
-  color: #4ec5c1; /* Turquoise Ocean */
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
+/* Button */
+.vote-button{
+  display:block;
+  width:100%;
+  background:#4ec5c1;
+  color:#fff;
+  border:none;
+  padding:12px 14px;
+  border-radius:10px;
+  font-size:1rem;
+  font-weight:800;
+  letter-spacing:.3px;
+  cursor:pointer;
+  transition:filter .2s ease, transform .02s ease;
+}
+.vote-button:hover{ filter:brightness(1.06); }
+.vote-button:active{ transform:translateY(1px); }
+
+/* Voted state */
+.contestant-card.voted{
+  border:2px solid #ff5da2;
+  box-shadow:0 0 0 5px rgba(255,93,162,.12), 0 12px 24px rgba(0,0,0,.12);
+}
+.vote-button.voted-button{
+  background:#ff8661;
+  box-shadow:0 0 0 3px rgba(255,134,97,.18) inset;
 }
 
-.contestant-age {
-  color: #777;
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
+/* Grid */
+.contestant-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:26px;
+  justify-items:center;
+  margin:2rem auto 3rem;
+  max-width:1200px;
 }
 
-.contestant-bio {
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 1rem;
-  line-height: 1.4;
+@media (max-width:520px){
+  .contestant-card{ width:92%; }
+  .contestant-grid{ gap:18px; }
 }
 
-.vote-button {
-  background-color: #4ec5c1; /* Turquoise Ocean */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.vote-button:hover {
-  background-color: #ff8661; /* Coral Crush */
-}
-
-.contestant-card.voted {
-  border: 3px solid #ff5da2; /* Sunset Pink */
-  box-shadow: 0 0 20px rgba(255, 93, 162, 0.6);
-  transform: translateY(-6px);
-  transition: all 0.3s ease;
-}
-
-.vote-button.voted-button {
-  background-color: #ff8661; /* Coral Crush */
-  color: white;
-  box-shadow: 0 0 10px rgba(255, 134, 97, 0.6);
-}
-
-.vote-button.voted-button:hover {
-  background-color: #ff5da2; /* Sunset Pink */
-}
-
-.contestant-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-  margin: 2rem auto;
-  max-width: 1000px;
-}

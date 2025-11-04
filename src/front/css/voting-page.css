@@ -40,8 +40,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 80px;
-  animation: fadeInUp 1s ease-in-out;
+  align-items: flex-start;
+  padding: 40px 20px 80px;
+  animation: fadeInUp 0.8s ease-in-out;
+  background: linear-gradient(180deg, #ff89a5 0%, #ffaf82 100%);
+  min-height: 100vh;
 }
 
 @keyframes fadeIn {

@@ -3,11 +3,11 @@
 
 
 export const loginUser = (store, dispatch, credentials) => {
-    fetch(store.baseUrl + "api/log_in"), {
+    fetch(store.baseUrl + "api/log_in", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(credentials)
-    }
+    })
     .then(resp => resp.json())
     .then(data => {
         console.log("Login data:", data);

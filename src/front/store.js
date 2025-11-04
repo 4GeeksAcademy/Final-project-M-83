@@ -10,10 +10,10 @@ export const initialStore = () => {
     },
     islanders: [],
     users: [],
-    auth: {
-      isAuthenticated: false,
-      token: null,
-      user: null
+     auth: {
+     isAuthenticated:false,
+     token: null,
+     user:null
     },      
     favorites: [] 
           

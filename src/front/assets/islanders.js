@@ -6,7 +6,7 @@ export const actions = {
     // CODE FOR GET METHOD
     getAllIslanders :async (store, setIslanderData, setFemaleContestants, setMaleContestants) =>{
         try{
-            const resp = await fetch(store.baseUrl + `api/islanders`)
+            const resp = await fetch(store.baseUrl + `islanders`)
             const data = await resp.json()
             const male = data.islanders.filter(
                 (boy) => boy.gender === "Male"
@@ -99,7 +99,8 @@ voteIslander: async (store, dispatch, islander) => {
       type: "update-islander-votes",
       payload: { id: islander.id, votes: nextVotes },
     });
-
+    
+   
     const options = {
       method: "PUT",
       headers: {

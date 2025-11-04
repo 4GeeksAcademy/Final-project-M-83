@@ -8,10 +8,12 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token , get_jwt_identity , jwt_required
 
-api = Blueprint('api', __name__,url_prefix='/api')
+
+api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
+    
 
 
 @api.route('/sign_up', methods=['POST'])
@@ -32,13 +34,14 @@ def handle_sign_up():
         phonenumber= new_phonenumber,
         profile_image = new_profile_image
         )
+   
+    db.session.add(new_user)
+    db.session.commit()
     response_body = {
         "message": "User created",
         "user": new_user.serialize()
     }
-    db.session.add(new_user)
-    db.session.commit()
-
+    
     return jsonify(response_body), 201
 
 @api.route('/log_in', methods=['POST'])

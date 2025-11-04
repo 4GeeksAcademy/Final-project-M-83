@@ -3,10 +3,11 @@ import "../css/contestant-card.css";
 
 export const ContestantCard = ({ islander, onVote, showVotes = false }) => {
   if (!islander) return null;
-  const { id, name, age, image, bio, votes = 0 } = islander;
+  const { id, name, age, photo_url, hometown,occupation, votes = 0 } = islander;
   const [voted, setVoted] = useState(false);
 
   useEffect(() => setVoted(false), [id]);
+
 
   const handleVote = async () => {
     if (onVote) {
@@ -18,13 +19,32 @@ export const ContestantCard = ({ islander, onVote, showVotes = false }) => {
   return (
     <div className={`contestant-card ${voted ? "voted" : ""}`}>
       <div className="contestant-image-container">
-        <img src={image} alt={name} className="contestant-image" />
+        <img src={photo_url} alt={name} className="contestant-image" />
       </div>
 
       <div className="contestant-info">
         <h3 className="contestant-name">{name}</h3>
-        <p className="contestant-age">{age} years old</p>
-        {bio && <p className="contestant-bio">{bio}</p>}
+
+            <ul className="contestant-meta">
+              {age && (
+                <li className="meta">
+                  <span className="meta-label">Age</span>
+                  <span className="meta-value">{age} yrs</span>
+                </li>
+              )}
+              {hometown && (
+                <li className="meta">
+                  <span className="meta-label">Hometown</span>
+                  <span className="meta-value">{hometown}</span>
+                </li>
+              )}
+              {occupation && (
+                <li className="meta">
+                  <span className="meta-label">Occupation</span>
+                  <span className="meta-value">{occupation}</span>
+                </li>
+              )}
+            </ul>
 
         {showVotes && (
           <div className="vote-counter">
@@ -36,6 +56,7 @@ export const ContestantCard = ({ islander, onVote, showVotes = false }) => {
         <button
           className={`vote-button ${voted ? "voted-button" : ""}`}
           onClick={handleVote}
+          disabled={voted}
         >
           {voted ? "VOTED 💘" : "VOTE"}
         </button>

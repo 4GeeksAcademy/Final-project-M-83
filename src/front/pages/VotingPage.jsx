@@ -18,7 +18,7 @@ export const VotingPage = () => {     // 👈 named export
       setFemaleContestants,
       setMaleContestants
     );
-  }, [store]);
+  }, []);
 
   const handleVote = useCallback(
     async(islander)=> {
