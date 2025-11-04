@@ -3,7 +3,7 @@
 
 
 export const loginUser = (store, dispatch, credentials) => {
-    fetch(store.baseUrl + "log_in", {
+    fetch(store.baseUrl + "api/log_in", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(credentials)
@@ -45,7 +45,7 @@ export const getAllUsers = (store, dispatch) => {
 
 
 export const signUp = (store , dispatch , userData) => {
-    fetch(store.baseUrl + "user",{
+    fetch(store.baseUrl + "api/sign_up",{
         method: "POST",
         headers: { "Content-Type" : "application/json"},
         body: JSON.stringify (userData)
