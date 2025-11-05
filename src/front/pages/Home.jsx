@@ -4,8 +4,9 @@ import { Leaderboard } from "./Leaderboard.jsx";
 import { loginUser } from "../assets/Users.js";
 import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
-import { HomeCarousel } from "../components/HomeCarousel.jsx"
-import "../css/home-girlsandboys.css"
+import { HomeCarousel } from "../components/HomeCarousel.jsx";
+import "../css/home-girlsandboys.css";
+import "../css/home-bombshells.css";
 import { Link } from "react-router-dom";
 
 
@@ -15,6 +16,8 @@ export const Home = () => {
   const [femaleContestants, setFemaleContestants] = useState([]);
   const [maleContestants, setMaleContestants] = useState([]);
   const [allIslanders, setAllIslanders] = useState(null);
+  const [bombshells, setBombshells] = useState([]);
+
 
   // ---------------------------
   // Helper functions
@@ -82,7 +85,7 @@ export const Home = () => {
 
   useEffect(() => {
     const init = async () => {
-      const data = await actions.getAllIslanders(store, setAllIslanders, setFemaleContestants, setMaleContestants);
+      const data = await actions.getAllIslanders(store, setAllIslanders, setFemaleContestants, setMaleContestants,setBombshells);
       if (!data || data.length === 0) {
         console.log("No islanders found, fetching new data...");
         await fetchJsonData();
@@ -100,74 +103,85 @@ export const Home = () => {
 
 
   return (
-    <div className="container mt-4">
-      <div style={{ marginBottom: "2rem" }}>
-        <HomeCarousel />
-      </div>
-      <div className="row">
+  <div className="container mt-4">
+  <div style={{ marginBottom: "2rem" }}>
+    <HomeCarousel />
+  </div>
 
-        {/* Bombshell Column */}
-        <div className="col-md-4">
-          <div className="bombshellCard p-3 text-center text-white rounded-3">
-            <h6 className="fw-bold mb-2">🚨 BOMBSHELL ALERT!</h6>
-          </div>
+  {/* equal height columns via flexbox */}
+  <div className="row home-equal g-4">
+    {/* LEFT: Bombshells */}
+    <div className="col-md-4 d-flex">
+      <section className="bombshellSection rounded-3 flex-grow-1">
+        <div className="bombshellHeader">🚨 BOMBSHELL ALERT!</div>
+
+        <div className="bombshellStrip">
+          {bombshells.map((p, i) => (
+            <Link
+              to="/islanders"
+              key={p.id ?? i}
+              className="bombCard"
+              title={p.name || "View Islanders"}
+            >
+              <div className="bombImgWrap">
+                <img src={p.photo_url} alt={p.name || "Islander"} />
+              </div>
+
+              <div className="bombInfo">
+                <div className="bombName">
+                  {(p.name || "New Islander").split(" ")[0].toUpperCase()}
+                </div>
+                <div className="bombSub">Meet the new Islander turning heads!</div>
+                <button className="bombBtn" type="button">View Islanders</button>
+              </div>
+            </Link>
+          ))}
         </div>
+      </section>
+    </div>
 
-         {/* ✅ Girls + Boys */}
-        <div className="col-md-8">
-          {/* Girls Section */}
-          <div className="girlsSection p-3 mb-4 rounded-3">
-            <h5 className="fw-bold text-white mb-3">Meet The Girls</h5>
-            <div className="li-strip-row">
-              {femaleContestants
-                .filter(girl => !girl.bombshell) // 👈 exclude bombshells
-                  .map((girl, index) => (
-                      <Link 
-                        to="/islanders"
-                        key={girl.id ?? index}
-                        style={{ textDecoration: "none" }}
-                       >   
-                <div className="li-chip" key={girl.id ?? index}>
+    {/* RIGHT: Girls + Boys (unchanged) */}
+    <div className="col-md-8 d-flex flex-column ">
+      <div className="girlsSection p-3 mb-4 rounded-3">
+        <h5 className="fw-bold text-white mb-3">Meet The Girls</h5>
+        <div className="li-strip-row">
+          {femaleContestants
+            .filter(girl => !girl.bombshell)
+            .map((girl, index) => (
+              <Link to="/islanders" key={girl.id ?? index} style={{ textDecoration: "none" }}>
+                <div className="li-chip">
                   <div className="li-avatar ring-pink">
-                    <img
-                      src={girl.photo_url}
-                      alt={girl.name || `Contestant ${index + 1}`}
-                    />
+                    <img src={girl.photo_url} alt={girl.name || `Contestant ${index + 1}`} />
                   </div>
-                  <div className="li-name" title={girl.name || "Unknown"}>{girl.name || "Unknown"}</div>
+                  <div className="li-name" title={girl.name || "Unknown"}>
+                    {girl.name || "Unknown"}
+                  </div>
                 </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+              </Link>
+            ))}
+        </div>
+      </div>
 
-          {/* Boys Section */}
-          <div className="boysSection p-3 rounded-3">
-            <h5 className="fw-bold text-white mb-3">Meet The Boys</h5>
-            <div className="li-strip-row">
-               {maleContestants
-                .filter(boy => !boy.bombshell) // 👈 exclude bombshells
-                .map((boy, index) => (
-                  <Link 
-                    to="/islanders"
-                    key={boy.id ?? index}
-                    style={{ textDecoration: "none" }}
-                  >
-                <div className="li-chip" key={boy.id ?? index}>
+      <div className="boysSection p-3 rounded-3">
+        <h5 className="fw-bold text-white mb-3">Meet The Boys</h5>
+        <div className="li-strip-row">
+          {maleContestants
+            .filter(boy => !boy.bombshell)
+            .map((boy, index) => (
+              <Link to="/islanders" key={boy.id ?? index} style={{ textDecoration: "none" }}>
+                <div className="li-chip">
                   <div className="li-avatar ring-turquoise">
-                    <img
-                      src={boy.photo_url}
-                      alt={boy.name || `Contestant ${index + 1}`}
-                    />
+                    <img src={boy.photo_url} alt={boy.name || `Contestant ${index + 1}`} />
                   </div>
-                  <div className="li-name"title={boy.name || "Unknown"}>{boy.name || "Unknown"}</div>
+                  <div className="li-name" title={boy.name || "Unknown"}>
+                    {boy.name || "Unknown"}
+                  </div>
                 </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+              </Link>
+            ))}
         </div>
       </div>
     </div>
-  );
-};
+  </div>
+</div>
+  )};

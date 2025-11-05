@@ -1,0 +1,215 @@
+/* ===============================
+   🧨 Bombshell Section Styles
+   =============================== */
+
+/* Keep columns the same height side by side */
+.home-equal {
+  align-items: stretch; /* forces equal height */
+}
+
+/* Each Bootstrap column becomes flex for fill height */
+.home-equal > [class^="col-"] {
+  display: flex;
+}
+
+/* Bombshell container fills column height */
+.bombshellSection {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* fill available height */
+  min-height: 0; /* allow inner scroll to work */
+  background: linear-gradient(180deg, #ff5da2 0%, #ff8661 100%);
+  border: 2px solid #ffd166;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  color: white;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* Header title */
+.bombshellHeader {
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollable area for bombshell cards */
+.bombshellStrip {
+  flex: 1;
+  overflow-y: auto; /* vertical scroll */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 6px; /* room for scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.bombshellStrip::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bombshellStrip::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+}
+
+/* Individual bombshell card */
+.bombCard {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bombCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Image container */
+.bombImgWrap {
+  width: 100%;
+  height: 180px; /* consistent height */
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;  /* centers image vertically */
+  justify-content: center; /* centers horizontally */
+  margin-bottom: 10px;
+}
+
+/* Image itself */
+.bombImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crops nicely without stretching */
+}
+
+/* Info section */
+.bombInfo {
+  color: #fff;
+}
+
+.bombName {
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  line-height: 1.1;
+}
+
+.bombSub {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-bottom: 0.6rem;
+}
+
+/* Button style */
+.bombBtn {
+  background-color: #ffd166;
+  color: #000;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.bombBtn:hover {
+  background-color: #ffecb3;
+  transform: scale(1.05);
+}
+
+/* ===============================
+   Responsive Adjustments
+   =============================== */
+@media (max-width: 992px) {
+  .bombImgWrap {
+    height: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .bombshellSection {
+    margin-bottom: 1rem;
+  }
+
+  .bombImgWrap {
+    height: 140px;
+  }
+}
+/* Fix bombshell column scroll & image centering */
+
+.bombshellSection {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  max-height: 100%; /* let Bootstrap handle column height */
+  background: linear-gradient(180deg, #ff5da2 0%, #ff8661 100%);
+  border: 2px solid #ffd166;
+  border-radius: 12px;
+  color: white;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* the inner scroll area — now constrained */
+.bombshellStrip {
+  flex: 1;
+  overflow-y: auto; /* enable vertical scrolling */
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  max-height: 550px; /* 👈 set a max-height for scroll */
+}
+
+.bombshellStrip::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bombshellStrip::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+}
+
+/* fix image alignment */
+.bombImgWrap {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.bombImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%; /* 👈 shifts image slightly down */
+  transition: transform 0.2s ease;/
+}
+
+/* optional: slight padding below to match height visually with right col */
+.bombshellSection {
+  margin-bottom: 0;
+}
