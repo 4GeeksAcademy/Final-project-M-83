@@ -46,7 +46,7 @@ export const getAllUsers = (store, dispatch) => {
 
 
 export const signUp = (store , dispatch , userData) => {
-    fetch(store.baseUrl + "sign_up",{
+    fetch(store.baseUrl + "api/sign_up",{
         method: "POST",
         headers: { "Content-Type" : "application/json"},
         body: JSON.stringify (userData)
@@ -105,6 +105,7 @@ export const deleteUser = (store, dispatch, userId) => {
 
 export const logoutUser = (dispatch) => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     dispatch({
         type: "logout"
     });
