@@ -1,0 +1,156 @@
+
+
+/* Hero */
+.leaderboard-page .leaderboard-hero {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+.leaderboard-page .leaderboard-title {
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: .4px;
+  color: #fff;
+  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  text-shadow: 0 2px 10px rgba(0,0,0,.22);
+}
+.leaderboard-page .leaderboard-sub {
+  margin-top: .25rem;
+  color: rgba(255,255,255,.9);
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.leaderboard-page .leaderboard-loading {
+  color: rgba(255,255,255,.9);
+  text-align: center;
+}
+
+/* Segmented control */
+.leaderboard-page .segmented {
+  display: inline-flex;
+  gap: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.22);
+  padding: 4px;
+  margin: 0 auto 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.16);
+  backdrop-filter: blur(4px);
+}
+.leaderboard-page .segmented-btn {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .2px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, color .12s ease;
+}
+.leaderboard-page .segmented-btn:hover {
+  transform: translateY(-1px);
+}
+.leaderboard-page .segmented-btn.active {
+  background: #ffd166; /* Golden Glow */
+  color: #2b2b2b;
+}
+
+/* Grid wrapper spacing */
+.leaderboard-page .leaderboard-grid-wrap {
+  margin-top: 8px;
+}
+
+/* Card polish (scoped to leaderboard only) */
+.leaderboard-page .contestant-card {
+  position: relative;
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.leaderboard-page .contestant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+}
+
+/* Ensure the image area anchors the badge nicely */
+.leaderboard-page .contestant-image-container {
+  position: relative; /* for absolute badge */
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Vote badge overlay (top-right) */
+.leaderboard-page .vote-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  min-width: 56px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  z-index: 2;
+  pointer-events: none;
+}
+.leaderboard-page .vote-badge-number {
+  font-weight: 800;
+  font-size: 0.98rem;
+  line-height: 1;
+}
+.leaderboard-page .vote-badge-label {
+  font-size: 0.72rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+/* Info & meta tweaks */
+.leaderboard-page .contestant-info {
+  padding: .9rem .95rem 1.05rem;
+}
+.leaderboard-page .contestant-name {
+  margin-bottom: .35rem;
+  font-size: 1.1rem;
+  letter-spacing: .2px;
+  color: #2b2b2b;
+}
+.leaderboard-page .contestant-meta {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  display: grid;
+  gap: 6px;
+}
+.leaderboard-page .meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+.leaderboard-page .meta-label {
+  color: #6b7280;
+  font-weight: 600;
+}
+.leaderboard-page .meta-value {
+  color: #2b2b2b;
+  font-weight: 600;
+}
+
+/* Hide the vote button on leaderboard in case it renders */
+.leaderboard-page .vote-button {
+  display: none !important;
+}
+
+/* Mobile: remove blur to keep things super smooth */
+@media (max-width: 576px) {
+  .leaderboard-page .segmented-btn {
+    padding: 7px 12px;
+    font-size: 0.95rem;
+  }
+  .leaderboard-page .vote-badge {
+    backdrop-filter: none;
+    background: rgba(0,0,0,.55);
+  }
+}
