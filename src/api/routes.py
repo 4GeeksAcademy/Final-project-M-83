@@ -8,10 +8,12 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token , get_jwt_identity , jwt_required
 
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
+    
 
 
 @api.route('/sign_up', methods=['POST'])
@@ -32,13 +34,14 @@ def handle_sign_up():
         phonenumber= new_phonenumber,
         profile_image = new_profile_image
         )
+   
+    db.session.add(new_user)
+    db.session.commit()
     response_body = {
         "message": "User created",
         "user": new_user.serialize()
     }
-    db.session.add(new_user)
-    db.session.commit()
-
+    
     return jsonify(response_body), 201
 
 @api.route('/log_in', methods=['POST'])
@@ -165,10 +168,10 @@ def post_islander():
     
     return jsonify({
         "msg": "islanders added successfully",
-        "islanders": new_islander
-    }), 201
+        "islanders": new_islander.serialize()}), 201
 
 @api.route('/islanders/<int:islander_id>', methods=['PUT'])
+
 def update_islander(islander_id):
     islander = db.session.get(Islander, islander_id)
     if not islander:
@@ -194,6 +197,18 @@ def update_islander(islander_id):
     }
 
     return jsonify(response_body), 200
+
+@api.route('/islanders/<int:islander_id>/vote', methods=['PUT'])
+@jwt_required()
+def vote_islander(islander_id):
+    user_email = get_jwt_identity()
+    islander = Islander.query.get(islander_id)
+    if not islander:
+        return jsonify({"msg": "Islander not found"}), 404
+    islander.votes = (islander.votes or 0) + 1
+    db.session.commit()
+    return jsonify({"data": islander.serialize(), "message": f"Vote recorded by {user_email}"}), 200
+
 
 @api.route('/islanders/<int:islander_id>', methods=['DELETE'])
 def remove_islander(islander_id):
