@@ -6,6 +6,7 @@ import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
 import { HomeCarousel } from "../components/HomeCarousel.jsx"
 import "../css/home-girlsandboys.css"
+import { Link } from "react-router-dom";
 
 
 export const Home = () => {
@@ -121,6 +122,11 @@ export const Home = () => {
               {femaleContestants
                 .filter(girl => !girl.bombshell) // 👈 exclude bombshells
                   .map((girl, index) => (
+                      <Link 
+                        to="/islanders"
+                        key={girl.id ?? index}
+                        style={{ textDecoration: "none" }}
+                       >   
                 <div className="li-chip" key={girl.id ?? index}>
                   <div className="li-avatar ring-pink">
                     <img
@@ -130,6 +136,7 @@ export const Home = () => {
                   </div>
                   <div className="li-name" title={girl.name || "Unknown"}>{girl.name || "Unknown"}</div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -141,6 +148,11 @@ export const Home = () => {
                {maleContestants
                 .filter(boy => !boy.bombshell) // 👈 exclude bombshells
                 .map((boy, index) => (
+                  <Link 
+                    to="/islanders"
+                    key={boy.id ?? index}
+                    style={{ textDecoration: "none" }}
+                  >
                 <div className="li-chip" key={boy.id ?? index}>
                   <div className="li-avatar ring-turquoise">
                     <img
@@ -150,6 +162,7 @@ export const Home = () => {
                   </div>
                   <div className="li-name"title={boy.name || "Unknown"}>{boy.name || "Unknown"}</div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>

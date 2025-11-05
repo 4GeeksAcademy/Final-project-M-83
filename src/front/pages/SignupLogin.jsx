@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../index.css";
 import { signUp } from "../assets/Users";
-import { loginUser } from "../assets/Users";
 import { logoutUser } from "../assets/Users";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { useNavigate } from "react-router-dom";
 
 
 export const SignupLogin = () => {
@@ -16,18 +16,42 @@ export const SignupLogin = () => {
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerPhone, setRegisterPhone] = useState("");
     const [registerProfImg, setRegisterProfImg] = useState("");
-
-    
     const [showModal, setShowModal] = useState(false);
 
-    
+    const navigate = useNavigate();
+
     const loggingIn = (e) => {
         e.preventDefault();
 
         const credentials = { email, password };
 
     
-        loginUser(store, dispatch, credentials);
+        fetch(store.baseUrl + "api/log_in", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(credentials),
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                console.log("Login data:", data);
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                    dispatch({
+                        type: "setAuth",
+                        payload: {
+                            isAuthenticated: true,
+                            token: data.token,
+                            user: data.user,
+                        },
+                    });
+ 
+                    navigate("/");
+                } else {
+                    alert("Invalid credentials");
+                }
+            })
+            .catch((err) => console.error("Login error:", err));
     };
 
     
