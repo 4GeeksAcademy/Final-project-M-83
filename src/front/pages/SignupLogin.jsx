@@ -26,7 +26,7 @@ export const SignupLogin = () => {
         const credentials = { email, password };
 
     
-        fetch(store.baseUrl + "api/log_in", {
+        fetch(store.baseUrl + "log_in", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(credentials),
