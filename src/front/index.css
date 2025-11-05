@@ -177,3 +177,17 @@ body{
 .contestant-card img:hover {
   transform: scale(1.05);
 }
+
+.welcome-section {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-text {
+  color: white;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  text-decoration: underline;
+}
