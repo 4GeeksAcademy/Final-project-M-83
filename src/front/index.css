@@ -125,6 +125,8 @@ body{
   height: 56.8rem;
 }
 
+<<<<<<< HEAD
+=======
 .girlsSection{
   background: linear-gradient(180deg, #ff5da2 0%, #ff8661 100%);
   border: 2px solid #ffd166;
@@ -191,3 +193,4 @@ body{
 .logout-btn:hover {
   text-decoration: underline;
 }
+>>>>>>> de1771923de8f06c4c65f8ce56f3bef6b706cb9d

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Leaderboard } from "./Leaderboard.jsx";
 import { loginUser } from "../assets/Users.js";
 import { actions } from "../assets/islanders.js";
 import { fphotoUrls, mphotoUrls } from "../assets/photoUrls.js";
 import { HomeCarousel } from "../components/HomeCarousel.jsx"
+import "../css/home-girlsandboys.css"
+import { Link } from "react-router-dom";
 
 
 export const Home = () => {
@@ -100,7 +101,9 @@ export const Home = () => {
 
   return (
     <div className="container mt-4">
-      <HomeCarousel />
+      <div style={{ marginBottom: "2rem" }}>
+        <HomeCarousel />
+      </div>
       <div className="row">
 
         {/* Bombshell Column */}
@@ -110,45 +113,61 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* Girls and Boys Column */}
+         {/* ✅ Girls + Boys */}
         <div className="col-md-8">
-
           {/* Girls Section */}
           <div className="girlsSection p-3 mb-4 rounded-3">
-            <h5 className="fw-bold mb-3">Meet The Girls</h5>
-            <div className="scrollingRow">
-              {femaleContestants.map((girl, index) => (
-                <div className="contestant-card text-center" key={index}>
-                  <img
-                    src={girl.photo_url}
-                    alt={girl.name || `Contestant ${index + 1}`}
-                  />
-                  <p>{girl.name || "Unknown"}</p>
-                  {girl.bombshell && <p style={{ color: "red" }}>💣 Bombshell!</p>}
+            <h5 className="fw-bold text-white mb-3">Meet The Girls</h5>
+            <div className="li-strip-row">
+              {femaleContestants
+                .filter(girl => !girl.bombshell) // 👈 exclude bombshells
+                  .map((girl, index) => (
+                      <Link 
+                        to="/islanders"
+                        key={girl.id ?? index}
+                        style={{ textDecoration: "none" }}
+                       >   
+                <div className="li-chip" key={girl.id ?? index}>
+                  <div className="li-avatar ring-pink">
+                    <img
+                      src={girl.photo_url}
+                      alt={girl.name || `Contestant ${index + 1}`}
+                    />
+                  </div>
+                  <div className="li-name" title={girl.name || "Unknown"}>{girl.name || "Unknown"}</div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>
 
           {/* Boys Section */}
           <div className="boysSection p-3 rounded-3">
-            <h5 className="fw-bold mb-3">Meet The Boys</h5>
-            <div className="scrollingRow">
-              {maleContestants.map((boy, index) => (
-                <div className="contestant-card text-center" key={index}>
-                  <img
-                    src={boy.photo_url}
-                    alt={boy.name || `Contestant ${index + 1}`}
-                  />
-                  <p>{boy.name || "Unknown"}</p>
-                  {boy.bombshell && <p style={{ color: "red" }}>💣 Bombshell!</p>}
+            <h5 className="fw-bold text-white mb-3">Meet The Boys</h5>
+            <div className="li-strip-row">
+               {maleContestants
+                .filter(boy => !boy.bombshell) // 👈 exclude bombshells
+                .map((boy, index) => (
+                  <Link 
+                    to="/islanders"
+                    key={boy.id ?? index}
+                    style={{ textDecoration: "none" }}
+                  >
+                <div className="li-chip" key={boy.id ?? index}>
+                  <div className="li-avatar ring-turquoise">
+                    <img
+                      src={boy.photo_url}
+                      alt={boy.name || `Contestant ${index + 1}`}
+                    />
+                  </div>
+                  <div className="li-name"title={boy.name || "Unknown"}>{boy.name || "Unknown"}</div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>
         </div>
       </div>
     </div>
-
   );
 };
