@@ -79,6 +79,47 @@ body{
   background-color: #FF8661; /* Coral Crush hover */
 }
 
+.loginCard {
+  width: 800px;
+  height: 450px;
+  background-color: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.loginInput {
+  flex: 1;
+  background-color: #fff;
+}
+
+.registerSection {
+  flex: 1;
+  background-color: #4ecdc4; /* teal-like color */
+}
+
+.register-btn {
+  background-color: #ff8c61;
+  border: none;
+  padding: 12px 30px;
+  font-weight: bold;
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 4px;
+}
+
+.register-btn:hover {
+  background-color: #ff7547;
+}
+
+.forgot-password-link {
+  color: #000;
+  text-decoration: none;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
 .bombshellCard {
   background: linear-gradient(180deg, #ff4d4f 0%, #ff7a7a 100%);
   height: 56.8rem;
