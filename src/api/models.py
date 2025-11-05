@@ -42,7 +42,8 @@ class Islander (db.Model):
     gender = Column(String(10), nullable=False)
     bombshell = Column(Boolean, default=False)  
     photo_url = Column(String(260), nullable=True)
-    
+    votes = Column(Integer, default=0, nullable=False)
+
     def serialize(self):
         return {
             "id": self.id,
@@ -52,5 +53,6 @@ class Islander (db.Model):
             "hometown": self.hometown,
             "gender": self.gender,
             "bombshell": self.bombshell,
-            "photo_url": self.photo_url
+            "photo_url": self.photo_url,
+            "votes": self.votes
         }
