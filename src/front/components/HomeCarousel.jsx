@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const HomeCarousel = () => {
 return (
@@ -10,21 +11,27 @@ return (
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
+      <Link to="/voting">
       <img src="https://i.imgur.com/v64awNU.jpeg" class="d-block w-100" alt="..." />
+      </Link>
       <div class="carousel-caption d-none d-md-block">
         <h5>Vote for Your Favorite Contestants!</h5>
         <p>Support your favorite islanders with just one click!</p>
       </div>
     </div>
     <div class="carousel-item">
+      <Link to="/islanders">
       <img src="https://i.imgur.com/5uHEQ17.jpeg" class="d-block w-100" alt="..."/>
+      </Link>
       <div class="carousel-caption d-none d-md-block">
         <h5>Favorite an Islander</h5>
         <p>Save your top picks and access them anytime.</p>
       </div>
     </div>
     <div class="carousel-item">
+      <Link to ="/leaderboard">
       <img src="https://i.imgur.com/pyI5qgb.png" class="d-block w-100" alt="..."/>
+      </Link>
       <div class="carousel-caption d-none d-md-block">
         <h5>Stay Updated on Bombshells</h5>
         <p>Be the first to know when new bombshells enter the villa 💣</p>
