@@ -1,3 +1,24 @@
+const getFavoriteIds = async (store) => {
+  const token = store.auth?.token || localStorage.getItem("token");
+  if (!token) return[];
+  try {
+    const options = {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        };
+      const resp = await fetch(store.baseUrl + `user/favorites/ids`, options);
+      if (resp.ok){
+        const data = await resp.json();
+        return data.favorite_islander_ids || [];
+      } 
+  } catch (e) {
+    console.error("Error fetching favorites:", e);
+  } 
+  return [];
+}
+
 export const actions = {
   // CODE FOR GET METHOD
   getAllIslanders: async (
@@ -10,16 +31,22 @@ export const actions = {
     try {
       const resp = await fetch(store.baseUrl + `islanders`);
       const data = await resp.json();
-      const male = data.islanders.filter((boy) => boy.gender === "Male");
-      const female = data.islanders.filter((girl) => girl.gender === "Female");
-      const bombs = data.islanders.filter(islander => islander.bombshell === true);
+      let allIslanders = data.islanders;
+      const favoriteIds = await getFavoriteIds(store);
+      const augmentedIslanders = allIslanders.map(islander => ({
+        ...islander,
+        is_favorite: favoriteIds.includes(islander.id)
+      }));
+      const male = augmentedIslanders.filter((boy) => boy.gender === "Male");
+      const female = augmentedIslanders.filter((girl) => girl.gender === "Female");
+      const bombs = augmentedIslanders.filter(islander => islander.bombshell === true);
       console.log("FILTER FUNCTION TAG FOR BOY!!!!!!!! :", male);
       console.log("FILTER FUNCTION TAG FOR GIRL!!!!!!!! :", female);
-      setIslanderData(data.islanders);
+      setIslanderData(augmentedIslanders);
       setMaleContestants(male);
       setFemaleContestants(female);
       setBombshells && setBombshells(bombs);
-      return data.islanders;
+      return augmentedIslanders;
     } catch (e) {
       console.log("Error Getting Islanders!!!!!!!!!! :", e);
     }
@@ -135,4 +162,43 @@ export const actions = {
       return false;
     }
   },
+   // 🔒 FAVORITE: Requires login (uses token)
+      toggleFavoriteIslander: async (store, dispatch, islander) => {
+        try {
+          if (!islander?.id) return false;
+          
+          const token = store.auth?.token || localStorage.getItem("token");
+          if (!token) {
+            alert("You must log in to set a favorite contestant ❤️");
+            return false;
+          }
+          const favoriteIslander = islander.is_favorite || false; 
+          const method = favoriteIslander ? "DELETE" : "POST";
+
+          const options = {
+            method: method, 
+            headers: {
+              "Content-Type":"application/json",
+              Authorization: "Bearer " + token,
+            },
+          };
+          const resp = await fetch (
+            store.baseUrl + `user/favorites/${islander.id}`,
+            options
+          );
+          if (!resp.ok) {
+            console.error("Favorite toggle failed:", await resp.text());
+            alert("Failed to favorite islander, please try again");
+            return false;
+          }
+          dispatch({
+            type: "toggle-islander-favorite",
+            payload: {id: islander.id, is_favorite: !favoriteIslander},
+          });
+          return true;
+        } catch (err) {
+          console.error("Error toggling favorite islander:", err)
+          return false;
+        }
+      }
 };

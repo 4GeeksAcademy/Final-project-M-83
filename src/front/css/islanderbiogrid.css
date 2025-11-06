@@ -1,0 +1,19 @@
+/* .bio-grid {
+    display: grid;
+    /* KEY CHANGE: Three equal columns */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 0; /* Remove padding as it's on the scrollable container */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 1024px) {
+    .bio-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    }
+}
+@media (max-width: 600px) {
+    .bio-grid {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+    }
+} */

@@ -13,7 +13,7 @@ export const ContestantCard = ({ islander, onVote, showVotes = false }) => {
     if (onVote) {
       const success = await onVote(islander);
       if (success) setVoted(true);
-  }
+  };
 };
 
   return (

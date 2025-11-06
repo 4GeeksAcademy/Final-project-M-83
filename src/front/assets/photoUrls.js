@@ -19,7 +19,7 @@ export const fphotoUrls = [
 
 export const mphotoUrls = [
 			"https://images.unsplash.com/photo-1582734110223-a690d6e8c579?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774",
-			"https://images.unsplash.com/photo-1587752370712-a03186c4a3fd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1964",
+			"https://images.unsplash.com/photo-1587752370712-a03186c4a3fd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=60&w=900",
 			"https://images.unsplash.com/photo-1589481158353-4ac067b3fd37?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTV8RkQzaVc4V2VzX1l8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=60&w=900",
 			"https://images.unsplash.com/photo-1660925476980-f0590afabc98?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTZ8RkQzaVc4V2VzX1l8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=60&w=900",
 			"https://images.unsplash.com/photo-1662755674851-ecad5d80fd85?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHxGRDNpVzhXZXNfWXx8ZW58MHx8fHx8&auto=format&fit=crop&q=60&w=900",

@@ -1,0 +1,103 @@
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 1. FULL-SCREEN BACKGROUND WRAPPER --- */
+/* This will now handle the background and primary layout direction */
+.full-background-wrap {
+    /* KEY CHANGE: Use Flexbox to center the main content vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    
+    min-height: 100vh;
+    color: #fff; /* White text for the main page header area */
+    overflow-x: hidden; 
+}
+
+/* --- 2. MAIN CENTERED CONTENT CONTAINER (Header Area) --- */
+.all-islanders-page {
+    /* Max width to constrain the header area, similar to .voting-hero */
+    max-width: 1000px;
+    width: 90%; 
+    margin: 0 auto; 
+    padding: 30px 0; 
+    font-family: 'Arial', sans-serif; 
+    overflow-x: hidden; 
+}
+
+/* --- 3. PAGE HEADER STYLING (Similar to .voting-hero) --- */
+.bio-page-header {
+    display: flex;
+    flex-direction: column; /* Stack header elements */
+    align-items: center; /* Center them horizontally */
+    text-align: center;
+    
+    margin-top: 60px;
+    margin-bottom: 40px;
+    padding: 20px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.8s ease-in-out; /* Apply Animation */
+}
+
+/* --- Headline/Title Styling (Adopted from voting-hero .headline) --- */
+.header-title {
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    /* Use the dramatic text shadow from the voting page */
+    text-shadow:
+        0 0 10px rgba(255, 93, 162, 0.6),
+        0 0 20px rgba(255, 134, 97, 0.5),
+        0 0 40px rgba(255, 209, 102, 0.4);
+}
+
+.page-nav {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px; /* Space the nav from the title */
+}
+
+/* --- 4. GRID WRAPPER (Adopting .voting-grid-wrap functionality) --- */
+/* This section handles the grid of islanders */
+.islanders-grid-wrapper { /* New class to apply grid-wrap styles */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px 80px;
+    animation: fadeInUp 0.8s ease-in-out; /* Apply Animation */
+    
+    /* KEY CHANGE: Apply the gradient here to wrap the grid content */
+    background: linear-gradient(180deg, #ff89a5 0%, #ffaf82 100%);
+    min-height: 100vh; 
+}
+
+/* We need to apply the .islanders-grid-wrapper class to the content containing the sections
+   in your Islanders.jsx file. */
+
+/* --- 5. Media Queries (Adopted from Voting Page) --- */
+@media (max-width: 1024px) {
+  .bio-page-header { margin-top: 40px; margin-bottom: 30px; }
+  .header-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 768px) {
+  .bio-page-header { margin-top: 30px; margin-bottom: 20px; }
+  .header-title { font-size: 1.8rem; }
+}
+
+/* Preserve existing section/scrollable container styles */
+.section-title {
+    /* ... existing styles ... */
+}
+.scrollable-bio-container {
+    /* ... existing styles ... */
+}

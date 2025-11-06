@@ -1,0 +1,93 @@
+--- GLOBAL ANIMATIONS ---
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 1. MAIN PAGE CONTAINER (Equivalent to .voting-page) --- */
+.islanders {
+    min-height: 100vh;
+    /* Use flex to align content, pulling the header area to the top */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    
+    
+    /* Apply the full gradient background here for consistency */
+    background: linear-gradient(180deg, #ff89a5 0%, #ffaf82 100%);
+    color: #fff; /* Default text color for the main page area */
+    overflow-x: hidden;
+}
+
+/* --- 2. CONTENT WRAPPER (This constrains the width of the main content) --- */
+.islanders-grid-wrap {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px 80px;
+  animation: fadeInUp 0.8s ease-in-out;
+  /* background: linear-gradient(180deg, #ff89a5 0%, #ffaf82 100%); */
+  min-height: 100vh;
+}
+
+.islander-grid-content-wrap{
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 0 80px 0;
+    animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* --- 3. HEADER STYLING (Equivalent to .voting-hero) --- */
+.bio-page-header {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    padding: 20px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.8s ease-in-out; /* Apply animation */
+    
+    /* Remove the bottom border from previous versions */
+    border-bottom: none; 
+}
+
+.header-title {
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    /* Use the dramatic text shadow from the voting page */
+    text-shadow:
+        0 0 10px rgba(255, 93, 162, 0.6),
+        0 0 20px rgba(255, 134, 97, 0.5),
+        0 0 40px rgba(255, 209, 102, 0.4);
+}
+
+.page-nav {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* --- 4. Section Titles and Containers --- */
+.islander-section {
+    padding: 0; /* Remove padding here, let the scrollable container handle it */
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2em;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 15px; 
+    border-radius: 8px;
+    font-weight: 700;
+    color: #ffffff; 
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
