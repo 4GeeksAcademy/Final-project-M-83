@@ -1,6 +1,8 @@
 const getFavoriteIds = async (store) => {
   const token = store.auth?.token || localStorage.getItem("token");
-  if (!token) return[];
+  if (!token || typeof token !== 'string' || token.trim() === '') {
+    return []; 
+  } 
   try {
     const options = {
             method: "GET",
@@ -8,7 +10,7 @@ const getFavoriteIds = async (store) => {
                 Authorization: "Bearer " + token,
             },
         };
-      const resp = await fetch(store.baseUrl + `user/favorites/ids`, options);
+      const resp = await fetch(store.baseUrl + `user/favorites/ids`, options)
       if (resp.ok){
         const data = await resp.json();
         return data.favorite_islander_ids || [];
@@ -186,9 +188,16 @@ export const actions = {
             store.baseUrl + `user/favorites/${islander.id}`,
             options
           );
+          if (resp.status === 401) {
+            // Clear the expired token from store and storage
+            dispatch({ type: "clear-auth" });
+            localStorage.removeItem("token");
+            alert("Your session has expired. Please log in again to continue.");
+            return false;
+          }
           if (!resp.ok) {
-            console.error("Favorite toggle failed:", await resp.text());
-            alert("Failed to favorite islander, please try again");
+            console.error("Favorite toggle failed:", resp.status, await resp.text());
+            alert("Failed to favorite islander (Status: ${resp.status}). Please try again");
             return false;
           }
           dispatch({

@@ -51,6 +51,7 @@ export const Islanders = () => {
         <div className="islanders">
             <header className="bio-page-header">
                 <h1 className="header-title">✨ MEET THE ISLANDERS ✨</h1>
+                <h2 className="header-subheader">Meet This Season's Singles Looking for Love</h2>
                 {/* Add links or navigation here if needed, matching your wireframe */}
             </header>
             
@@ -59,7 +60,7 @@ export const Islanders = () => {
                 <section className="islander-section girls-section">
                     <h2 className="section-title">The Girls</h2>
                     <div className="scrollable-bio-container">
-                    <ContestantGrid list={femaleContestants} gender="female" onFavorite={userFavorite}/>
+                    <ContestantGrid list={femaleContestants} gender="female" onFavorite={userFavorite} displayBio={true}/>
                     </div>
                 </section>
             )}
@@ -68,14 +69,14 @@ export const Islanders = () => {
                 <section className="islander-section guys-section">
                     <h2 className="section-title">The Guys</h2>
                     <div className="scrollable-bio-container">
-                        <ContestantGrid list={maleContestants} gender="male" onFavorite={userFavorite}/>
+                        <ContestantGrid list={maleContestants} gender="male" onFavorite={userFavorite} displayBio={true}/>
                     </div>
                 </section>
             )}
         </div>
             {!hasData && (
                 <p className="loading-message">
-                    Loading islanders... 
+                    {/* Loading islanders...  */}
                 </p>
             )}
     

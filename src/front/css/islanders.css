@@ -1,5 +1,5 @@
 --- GLOBAL ANIMATIONS ---
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
@@ -7,7 +7,7 @@
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
-}
+} */
 
 /* --- 1. MAIN PAGE CONTAINER (Equivalent to .voting-page) --- */
 .islanders {
@@ -16,24 +16,23 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Center horizontally */
-    
-    
     /* Apply the full gradient background here for consistency */
     background: linear-gradient(180deg, #ff89a5 0%, #ffaf82 100%);
     color: #fff; /* Default text color for the main page area */
-    overflow-x: hidden;
+    overflow-x: visible;
 }
 
 /* --- 2. CONTENT WRAPPER (This constrains the width of the main content) --- */
 .islanders-grid-wrap {
-  width: 95%;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px 20px 80px;
-  animation: fadeInUp 0.8s ease-in-out;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0px 80px;
+  /* animation: fadeInUp 0.8s ease-in-out; */
   /* background: linear-gradient(180deg, #ff89a5 0%, #ffaf82 100%); */
   min-height: 100vh;
+ 
 }
 
 .islander-grid-content-wrap{
@@ -41,7 +40,8 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px 0 80px 0;
-    animation: fadeInUp 0.8s ease-in-out;
+    /* animation: fadeInUp 0.8s ease-in-out; */
+     background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* --- 3. HEADER STYLING (Equivalent to .voting-hero) --- */
@@ -69,6 +69,10 @@
         0 0 40px rgba(255, 209, 102, 0.4);
 }
 
+.header-subheader{
+    color: #fff;
+}
+
 .page-nav {
     display: flex;
     gap: 15px;
@@ -77,6 +81,10 @@
 
 /* --- 4. Section Titles and Containers --- */
 .islander-section {
+    width: 100%;
+    max-width: 1900px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0; /* Remove padding here, let the scrollable container handle it */
     margin-bottom: 60px;
 }
@@ -90,4 +98,51 @@
     font-weight: 700;
     color: #ffffff; 
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, #ff5da2  0%, #ff8661  100%)
 }
+
+.guys-section .section-title {
+    background: linear-gradient(90deg,  #4ec5c1 0%, #ffd166 100%); 
+}
+
+.islanders .scrollable-bio-container {
+    width: 100%;
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    padding-top: 20px;
+    padding-bottom: 20px; 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    scrollbar-width: thin; 
+    scrollbar-color: #ff3374 #ffaf82; 
+}
+
+.islanders .scrollable-bio-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.islanders .scrollable-bio-container::-webkit-scrollbar-thumb {
+    background: #ff3374;
+    border-radius: 10px;
+}
+
+.islanders .scrollable-bio-container::-webkit-scrollbar-track {
+    background: #ffaf82;
+}
+
+.islanders .contestant-grid {
+  display: flex; /* Use flexbox for horizontal alignment */
+  flex-wrap: nowrap; /* CRITICAL: Prevent wrapping to the next line */
+  gap: 26px;
+  justify-content: flex-start; /* Start cards from the left */
+  margin: 1rem 0 3rem 0; 
+  grid-template-columns: unset; /* Reset from potential global rules */
+  max-width: unset;
+}
+
+.islanders .contestant-card {
+    min-width: 280px; 
+    max-width: 280px; 
+    flex-shrink: 0; 
+}
+

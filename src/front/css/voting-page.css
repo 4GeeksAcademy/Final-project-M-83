@@ -47,6 +47,15 @@
   min-height: 100vh;
 }
 
+.contestant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Your desired responsive grid */
+    gap: 26px;
+    justify-items: center;
+    margin: 2rem auto 3rem;
+    max-width: 1200px;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
