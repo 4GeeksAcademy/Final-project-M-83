@@ -221,16 +221,16 @@ def handle_favorite_toggle(islander_id):
     if not islander:
         return jsonify({"msg": "Islander not found."}), 404
     if request.method == 'POST':
-        if islander in user.favorites:
+        if islander in user.favorite_islanders:
             return jsonify({"msg": "Islander already favorited."}), 200
-        user.favorites.append(islander)
+        user.favorite_islanders.append(islander)
         db.session.commit()
         return jsonify({"msg": f"Islander {islander_id} added to favorites."}), 201
     elif request.method == 'DELETE':
         # Check if the favorite exists before removing
-        if islander not in user.favorites:
+        if islander not in user.favorite_islanders:
             return jsonify({"msg": "Islander not in favorites."}), 200
-        user.favorites.remove(islander)
+        user.favorite_islanders.remove(islander)
         db.session.commit()
         return jsonify({"msg": f"Islander {islander_id} removed from favorites."}), 204
 
@@ -246,7 +246,7 @@ def get_favorite_ids():
         return jsonify({"msg": "User not found."}), 404
     
     # Assuming user.favorites is the relationship list of Islander objects
-    favorite_islander_ids = [islander.id for islander in user.favorites]
+    favorite_islander_ids = [islander.id for islander in user.favorite_islanders]
     
     return jsonify({
         "favorite_islander_ids": favorite_islander_ids

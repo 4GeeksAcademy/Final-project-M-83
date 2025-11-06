@@ -76,7 +76,7 @@ export default function storeReducer(store, action = {}) {
       ),
     };
   
-    case "add-favorite":
+    case "toggle-islander-favorite":
       return {
         ...store,
         favorites: [...store.favorites, action.payload],
