@@ -267,3 +267,19 @@ def remove_islander(islander_id):
     }
 
     return jsonify(response_body)
+
+@api.route("/leaderboard", methods=["GET"])
+def leaderboard():
+    gender = request.args.get("gender")  # "Male" | "Female" | None
+    limit  = int(request.args.get("limit", 20))
+
+    q = Islander.query
+    if gender in ("Male", "Female"):
+        q = q.filter_by(gender=gender)
+
+    islanders = (
+        q.order_by(Islander.votes.desc(), Islander.name.asc())
+         .limit(limit)
+         .all()
+    )
+    return jsonify({"leaderboard": [i.serialize() for i in islanders]}), 200

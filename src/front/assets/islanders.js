@@ -116,51 +116,32 @@ export const actions = {
   },
 
   // 🔒 VOTE: Requires login (uses token)
-  voteIslander: async (store, dispatch, islander) => {
-    try {
-      if (!islander?.id) return;
+ voteIslander: async (store, dispatch, islander) => {
+  try {
+    if (!islander?.id) return false;
 
-      const token = store.auth?.token || localStorage.getItem("token");
-      if (!token) {
-        alert("You must log in to vote ❤️");
-        return false;
-      }
+    const token = store.auth?.token || localStorage.getItem("token");
+    if (!token) { alert("You must log in to vote ❤️"); return false; }
 
-      const nextVotes = (islander.votes || 0) + 1;
-      dispatch({
-        type: "update-islander-votes",
-        payload: { id: islander.id, votes: nextVotes },
-      });
+    const nextVotes = (islander.votes || 0) + 1;
 
-      const options = {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-      };
+    // optimistic
+    dispatch({
+      type: "update-islander-votes",
+      payload: { id: islander.id, votes: nextVotes },
+    });
 
-      // 👇 UPDATED PATH — now /api/islanders/<id>/vote
-      const resp = await fetch(
-        store.baseUrl + `islanders/${islander.id}/vote`,
-        options
-      );
+    const resp = await fetch(store.baseUrl + `islanders/${islander.id}/vote`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,
+      },
+    });
 
-      if (!resp.ok) {
-        console.error("Vote failed:", await resp.text());
-        alert("Vote failed. Please try again.");
-        return false;
-      }
-
-      const data = await resp.json();
-      const updatedVotes = data?.data?.votes ?? nextVotes;
-      dispatch({
-        type: "update-islander-votes",
-        payload: { id: islander.id, votes: updatedVotes },
-      });
-      return true;
-    } catch (err) {
-      console.error("Error voting islander:", err);
+    if (!resp.ok) {
+      console.error("Vote failed:", await resp.text());
+      alert("Vote failed. Please try again.");
       return false;
     }
   },
