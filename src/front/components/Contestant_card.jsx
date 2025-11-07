@@ -5,12 +5,8 @@ export const ContestantCard = ({ islander, onVote, showVotes = false, hideVoteBu
   if (!islander) return null;
   const { id, name, age, photo_url, hometown, occupation, votes = 0 } = islander;
   const [voted, setVoted] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(is_favorite);
 
   useEffect(() => setVoted(false), [id]);
-  useEffect(() => {
-    setIsFavorite(is_favorite)
-  }, [is_favorite]);
 
   const handleVote = async () => {
     if (!onVote) return;
@@ -18,28 +14,8 @@ export const ContestantCard = ({ islander, onVote, showVotes = false, hideVoteBu
     if (success) setVoted(true);
   };
 
-  const handleFavorite = async (e) => {
-    e.stopPropagation();
-    if (onFavorite) {
-      setIsFavorite(!isFavorite);
-      const success = await onFavorite(islander);
-      if (!success) {
-        setIsFavorite(islander.is_favorite);
-        alert("Failed to update favorite status. Please try again.")
-      }
-    }
-  }
-
   return (
     <div className={`contestant-card ${voted ? "voted" : ""}`}>
-      <button 
-        className={`favorite-button ${isFavorite ? "favorited" : ""}`} 
-        onClick={handleFavorite}
-        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-      >
-        {/* You will need CSS to style this content as a heart icon */}
-        {isFavorite ? '❤️' : '🤍'} 
-      </button>
       <div className="contestant-image-container">
         {showVotes && (
           <div className="vote-badge" aria-label="total votes">
@@ -95,7 +71,6 @@ export const ContestantGrid = ({ list = [], onVote, showVotes = false, hideVoteB
         key={islander.id ?? i}
         islander={islander}
         onVote={onVote}
-        onFavorite={onFavorite}
         showVotes={showVotes}
         hideVoteButton={hideVoteButton}
       />
