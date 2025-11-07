@@ -209,6 +209,49 @@ def vote_islander(islander_id):
     db.session.commit()
     return jsonify({"data": islander.serialize(), "message": f"Vote recorded by {user_email}"}), 200
 
+@api.route('/user/favorites/<int:islander_id>', methods=['POST', 'DELETE'])
+@jwt_required()
+def handle_favorite_toggle(islander_id):
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email=user_email).first()
+    
+    if not user:
+        return jsonify({"msg": "User not found."}), 404
+    islander = Islander.query.get(islander_id)
+    if not islander:
+        return jsonify({"msg": "Islander not found."}), 404
+    if request.method == 'POST':
+        if islander in user.favorite_islanders:
+            return jsonify({"msg": "Islander already favorited."}), 200
+        user.favorite_islanders.append(islander)
+        db.session.commit()
+        return jsonify({"msg": f"Islander {islander_id} added to favorites."}), 201
+    elif request.method == 'DELETE':
+        # Check if the favorite exists before removing
+        if islander not in user.favorite_islanders:
+            return jsonify({"msg": "Islander not in favorites."}), 200
+        user.favorite_islanders.remove(islander)
+        db.session.commit()
+        return jsonify({"msg": f"Islander {islander_id} removed from favorites."}), 204
+
+    return jsonify({"msg": "Invalid method for this endpoint."}), 405
+
+@api.route('/user/favorites/ids', methods=['GET'])
+@jwt_required()
+def get_favorite_ids():
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email=user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found."}), 404
+    
+    # Assuming user.favorites is the relationship list of Islander objects
+    favorite_islander_ids = [islander.id for islander in user.favorite_islanders]
+    
+    return jsonify({
+        "favorite_islander_ids": favorite_islander_ids
+    }), 200
+
 
 @api.route('/islanders/<int:islander_id>', methods=['DELETE'])
 def remove_islander(islander_id):
